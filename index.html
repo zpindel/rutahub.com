@@ -309,7 +309,26 @@
 
   <script>
     let currentLang = "pl";
-    function setLang(lang) {
+
+    function detectBrowserLang() {
+      const candidates = Array.isArray(navigator.languages) && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+      const normalized = candidates.map((value) => String(value).toLowerCase());
+      return normalized.some((value) => value.startsWith("pl")) ? "pl" : "en";
+    }
+
+    function getInitialLang() {
+      try {
+        const stored = localStorage.getItem("rutahub_lang");
+        if (stored === "pl" || stored === "en") return stored;
+      } catch (err) {
+        // ignore localStorage errors and fallback to browser language
+      }
+      return detectBrowserLang();
+    }
+
+    function setLang(lang, persist = true) {
       currentLang = lang;
       document.querySelectorAll("[data-lang]").forEach((el) => {
         if (el.dataset.lang === lang) {
@@ -324,6 +343,14 @@
       document.querySelectorAll(".lang-btn").forEach((btn) => {
         btn.classList.toggle("active", btn.textContent.toLowerCase() === lang);
       });
+
+      if (persist) {
+        try {
+          localStorage.setItem("rutahub_lang", lang);
+        } catch (err) {
+          // ignore localStorage errors
+        }
+      }
     }
     function handleSubmit(e) {
       e.preventDefault();
@@ -333,7 +360,7 @@
       setTimeout(() => toast.classList.remove("show"), 2500);
       e.target.reset();
     }
-    setLang("pl");
+    setLang(getInitialLang(), false);
   </script>
 </body>
 </html>
