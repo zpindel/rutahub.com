@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studio Równowaga — Joga, Pilates, Medytacja · Kraków</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#faf9f6;--bg2:#f3f0eb;--bg3:#ede8e0;
+      --accent:#5c7a5c;--accent2:#8c6d3f;
+      --text:#2c2c2c;--muted:#7a7a72;--border:#e0dbd2;
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'Inter',system-ui,sans-serif;
+      --r:16px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 6%;height:68px;
+      background:rgba(250,249,246,0.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--accent);letter-spacing:-.3px}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{font-size:.85rem;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{background:var(--accent);color:#fff;font-weight:600;font-size:.85rem;
+      padding:9px 22px;border-radius:50px;transition:all .2s}
+    .nav-cta:hover{background:#4a6b4a;transform:translateY(-1px)}
+
+    /* HERO */
+    #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;padding:100px 6% 80px;gap:5rem;max-width:1200px;margin:0 auto}
+    .hero-text{}
+    .hero-label{font-size:.72rem;font-weight:600;letter-spacing:2px;
+      text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+    h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);
+      font-weight:700;line-height:1.2;letter-spacing:-.5px;margin-bottom:1.5rem}
+    .hero-sub{font-size:1rem;color:var(--muted);max-width:420px;line-height:1.8;margin-bottom:2.5rem}
+    .btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-p{background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;
+      padding:13px 28px;border-radius:50px;transition:all .25s}
+    .btn-p:hover{background:#4a6b4a;transform:translateY(-2px)}
+    .btn-o{background:transparent;color:var(--text);font-weight:600;font-size:.9rem;
+      padding:13px 28px;border-radius:50px;border:1.5px solid var(--border);transition:all .25s}
+    .btn-o:hover{border-color:var(--accent);color:var(--accent)}
+    .hero-trust{display:flex;align-items:center;gap:12px;margin-top:2rem;font-size:.82rem;color:var(--muted)}
+    .trust-stars{color:#f59e0b;letter-spacing:1px}
+    .hero-visual{position:relative}
+    .hero-img{width:100%;aspect-ratio:.8;object-fit:cover;border-radius:24px;
+      background:linear-gradient(135deg,#c8d8c0 0%,#e8d5b8 50%,#d4c4a8 100%);
+      display:flex;align-items:center;justify-content:center;font-size:8rem}
+    .hero-badge{position:absolute;bottom:2rem;left:-2rem;
+      background:#fff;border-radius:14px;padding:14px 18px;
+      box-shadow:0 8px 30px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px}
+    .badge-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;
+      animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+    .badge-text{font-size:.78rem;font-weight:600}
+    .badge-sub{font-size:.68rem;color:var(--muted)}
+
+    /* SECTION */
+    section{padding:90px 6%}
+    .sec-inner{max-width:1200px;margin:0 auto}
+    .tag{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+      color:var(--accent);margin-bottom:.8rem;display:inline-block}
+    h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);
+      font-weight:700;letter-spacing:-.3px;margin-bottom:1rem;line-height:1.25}
+    .lead{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.8}
+    .sec-header{margin-bottom:3.5rem}
+
+    /* CLASSES */
+    #classes{background:var(--bg2)}
+    .classes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+    .class-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);
+      overflow:hidden;transition:all .3s}
+    .class-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+    .class-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem}
+    .yoga-bg{background:linear-gradient(135deg,#c8d8c0,#9dbe90)}
+    .pilates-bg{background:linear-gradient(135deg,#d4c4e0,#b89dc0)}
+    .med-bg{background:linear-gradient(135deg,#f0e0c0,#d4a878)}
+    .breath-bg{background:linear-gradient(135deg,#c0d8e0,#90b8c8)}
+    .class-body{padding:1.5rem}
+    .class-level{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+      color:var(--accent);margin-bottom:.4rem}
+    .class-body h3{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .class-body p{font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+    .class-meta{display:flex;gap:1rem;font-size:.78rem;color:var(--muted)}
+    .class-meta span{display:flex;align-items:center;gap:4px}
+
+    /* ABOUT */
+    #about{background:var(--bg)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .about-img{aspect-ratio:1;border-radius:24px;
+      background:linear-gradient(135deg,#d4c4a8,#a8c4a0);
+      display:flex;align-items:center;justify-content:center;font-size:7rem}
+    .about-text .tag{margin-bottom:1rem}
+    .about-text h2{margin-bottom:1.2rem}
+    .about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:.95rem}
+    .about-stats{display:flex;gap:2rem;margin-top:2rem;padding-top:2rem;
+      border-top:1px solid var(--border)}
+    .astat{}
+    .astat-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent)}
+    .astat-label{font-size:.78rem;color:var(--muted)}
+
+    /* SCHEDULE */
+    #schedule{background:var(--bg2)}
+    .schedule-table{width:100%;border-collapse:separate;border-spacing:0;
+      margin-top:2.5rem;font-size:.88rem}
+    .schedule-table thead th{background:var(--bg3);padding:12px 16px;
+      font-weight:600;color:var(--muted);text-align:left;font-size:.75rem;
+      text-transform:uppercase;letter-spacing:.5px}
+    .schedule-table thead th:first-child{border-radius:12px 0 0 12px}
+    .schedule-table thead th:last-child{border-radius:0 12px 12px 0}
+    .schedule-table tbody tr{border-bottom:1px solid var(--border)}
+    .schedule-table tbody td{padding:14px 16px;vertical-align:middle}
+    .class-tag{display:inline-block;padding:3px 10px;border-radius:6px;
+      font-size:.75rem;font-weight:600}
+    .tag-yoga{background:rgba(92,122,92,.1);color:var(--accent)}
+    .tag-pilates{background:rgba(168,140,200,.15);color:#7a5ca0}
+    .tag-med{background:rgba(200,160,100,.15);color:var(--accent2)}
+    .spots{font-size:.75rem;color:var(--muted)}
+    .spots-low{color:#ef4444;font-weight:600}
+    .book-link{color:var(--accent);font-weight:600;font-size:.8rem}
+    .book-link:hover{text-decoration:underline}
+
+    /* TESTIMONIALS */
+    #testi{background:var(--bg)}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .testi{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r);padding:1.8rem}
+    .testi-stars{color:#f59e0b;margin-bottom:1rem;letter-spacing:1px}
+    .testi p{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem;font-style:italic}
+    .testi-author{display:flex;align-items:center;gap:10px}
+    .testi-av{width:38px;height:38px;border-radius:50%;
+      background:linear-gradient(135deg,var(--bg3),#c8d8c0);
+      display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .testi-name{font-size:.85rem;font-weight:700}
+    .testi-since{font-size:.73rem;color:var(--muted)}
+
+    /* CONTACT */
+    #contact{background:var(--accent);color:#fff}
+    .contact-inner{max-width:1000px;margin:0 auto;display:grid;
+      grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    #contact .tag{color:rgba(255,255,255,.6)}
+    #contact h2{font-family:var(--serif);color:#fff;margin-bottom:1rem}
+    #contact p{color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:2rem}
+    .contact-items{display:flex;flex-direction:column;gap:1rem}
+    .ci{display:flex;align-items:center;gap:12px;font-size:.88rem;color:rgba(255,255,255,.85)}
+    .ci-icon{width:36px;height:36px;border-radius:8px;
+      background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    form{display:flex;flex-direction:column;gap:.9rem}
+    form input,form select,form textarea{
+      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+      border-radius:10px;padding:12px 16px;color:#fff;font-family:var(--sans);font-size:.88rem;
+      outline:none;transition:border-color .2s;resize:vertical}
+    form input::placeholder,form textarea::placeholder{color:rgba(255,255,255,.45)}
+    form input:focus,form textarea:focus,form select:focus{border-color:rgba(255,255,255,.6)}
+    form select option{background:var(--accent);color:#fff}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    .submit-btn{background:#fff;color:var(--accent);font-weight:700;font-size:.9rem;
+      padding:13px;border-radius:10px;cursor:pointer;border:none;font-family:var(--sans);
+      transition:all .2s}
+    .submit-btn:hover{background:#f0ebe0;transform:translateY(-1px)}
+
+    footer{padding:2rem 6%;background:var(--bg2);border-top:1px solid var(--border);
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:.8rem;color:var(--muted);flex-wrap:wrap;gap:1rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      #hero{grid-template-columns:1fr;gap:2.5rem;padding:100px 5% 60px}
+      .hero-badge{left:0;bottom:1rem}
+      .about-grid{grid-template-columns:1fr;gap:2.5rem}
+      .contact-inner{grid-template-columns:1fr;gap:2.5rem}
+      .form-row{grid-template-columns:1fr}
+      .schedule-table{font-size:.78rem}
+      footer{justify-content:center;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Studio Równowaga</div>
+  <ul class="nav-links">
+    <li><a href="#classes">Zajęcia</a></li>
+    <li><a href="#schedule">Grafik</a></li>
+    <li><a href="#about">O nas</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Zapisz się</a>
+</nav>
+
+<div style="max-width:1200px;margin:0 auto;">
+<section id="hero" style="padding:100px 0 80px">
+  <div class="hero-text">
+    <div class="hero-label">Kraków · Kazimierz</div>
+    <h1>Znajdź swój spokój. Wróć do siebie.</h1>
+    <p class="hero-sub">Studio jogi, pilatesu i medytacji w sercu Krakowa. Małe grupy, uważna praktyka, przestrzeń tylko dla Ciebie.</p>
+    <div class="btns">
+      <a href="#contact" class="btn-p">Zarezerwuj pierwsze zajęcia</a>
+      <a href="#classes" class="btn-o">Zobacz grafik →</a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-stars">★★★★★</span>
+      <span>4.9 — ponad 280 opinii Google</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img">🧘‍♀️</div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <div>
+        <div class="badge-text">Wolne miejsca</div>
+        <div class="badge-sub">Wtorek 18:30 · Joga dla początkujących</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="classes">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="tag">Oferta</div>
+      <h2>Zajęcia dla każdego poziomu</h2>
+      <p class="lead">Od pierwszej maty po zaawansowaną praktykę — znajdź zajęcia dopasowane do siebie.</p>
+    </div>
+    <div class="classes-grid">
+      <div class="class-card">
+        <div class="class-thumb yoga-bg">🌿</div>
+        <div class="class-body">
+          <div class="class-level">Wszystkie poziomy</div>
+          <h3>Hatha Joga</h3>
+          <p>Klasyczna joga z naciskiem na prawidłowe ułożenie ciała, oddech i wyciszenie umysłu.</p>
+          <div class="class-meta"><span>⏱ 75 min</span><span>👥 Max 10 osób</span></div>
+        </div>
+      </div>
+      <div class="class-card">
+        <div class="class-thumb pilates-bg">💜</div>
+        <div class="class-body">
+          <div class="class-level">Średniozaawansowany</div>
+          <h3>Pilates Reformer</h3>
+          <p>Ćwiczenia na specjalistycznym sprzęcie dla wzmocnienia głębokich mięśni i poprawy postawy.</p>
+          <div class="class-meta"><span>⏱ 60 min</span><span>👥 Max 6 osób</span></div>
+        </div>
+      </div>
+      <div class="class-card">
+        <div class="class-thumb med-bg">✨</div>
+        <div class="class-body">
+          <div class="class-level">Beginners welcome</div>
+          <h3>Medytacja i Mindfulness</h3>
+          <p>Naucz się technik medytacyjnych, które możesz stosować na co dzień. Bez doświadczenia.</p>
+          <div class="class-meta"><span>⏱ 50 min</span><span>👥 Max 12 osób</span></div>
+        </div>
+      </div>
+      <div class="class-card">
+        <div class="class-thumb breath-bg">🌊</div>
+        <div class="class-body">
+          <div class="class-level">Wszystkie poziomy</div>
+          <h3>Pranayama — Praca z Oddechem</h3>
+          <p>Techniki oddechowe poprawiające koncentrację, redukujące stres i wzmacniające układ nerwowy.</p>
+          <div class="class-meta"><span>⏱ 60 min</span><span>👥 Max 10 osób</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="tag">Grafik — Maj 2025</div>
+      <h2>Znajdź swój termin</h2>
+    </div>
+    <table class="schedule-table">
+      <thead><tr>
+        <th>Dzień</th><th>Godzina</th><th>Rodzaj zajęć</th><th>Prowadzący</th><th>Miejsca</th><th></th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Poniedziałek</td><td>07:00</td><td><span class="class-tag tag-yoga">Hatha Joga</span></td><td>Maja K.</td><td><span class="spots">6/10</span></td><td><a href="#contact" class="book-link">Zapisz się</a></td></tr>
+        <tr><td>Wtorek</td><td>18:30</td><td><span class="class-tag tag-yoga">Joga dla początkujących</span></td><td>Anna W.</td><td><span class="spots spots-low">2/10 — ostatnie!</span></td><td><a href="#contact" class="book-link">Zapisz się</a></td></tr>
+        <tr><td>Środa</td><td>09:00</td><td><span class="class-tag tag-pilates">Pilates Reformer</span></td><td>Karolina M.</td><td><span class="spots">4/6</span></td><td><a href="#contact" class="book-link">Zapisz się</a></td></tr>
+        <tr><td>Czwartek</td><td>19:00</td><td><span class="class-tag tag-med">Medytacja</span></td><td>Tomasz B.</td><td><span class="spots">8/12</span></td><td><a href="#contact" class="book-link">Zapisz się</a></td></tr>
+        <tr><td>Piątek</td><td>17:30</td><td><span class="class-tag tag-yoga">Hatha Joga</span></td><td>Maja K.</td><td><span class="spots">5/10</span></td><td><a href="#contact" class="book-link">Zapisz się</a></td></tr>
+        <tr><td>Sobota</td><td>10:00</td><td><span class="class-tag tag-pilates">Pilates Reformer</span></td><td>Karolina M.</td><td><span class="spots spots-low">1/6 — ostatnie!</span></td><td><a href="#contact" class="book-link">Zapisz się</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div class="about-img">🌱</div>
+      <div class="about-text">
+        <div class="tag">O Studio</div>
+        <h2>Przestrzeń stworzona z intencją</h2>
+        <p>Studio Równowaga powstało w 2018 roku z prostej potrzeby — miejsca, gdzie można zwolnić. Nie kolejna siłownia z jogą w planie. Prawdziwa praktyka, małe grupy, uważni nauczyciele.</p>
+        <p>Wszystkich naszych instruktorów cechuje wieloletnie doświadczenie oraz podejście do uczniów z szacunkiem i cierpliwością. Niezależnie od tego, czy jesteś tu pierwszy raz, czy praktykujesz od lat — znajdziesz tu swoje miejsce.</p>
+        <div class="about-stats">
+          <div class="astat"><div class="astat-num">7+</div><div class="astat-label">lat studio</div></div>
+          <div class="astat"><div class="astat-num">1200+</div><div class="astat-label">uczniów</div></div>
+          <div class="astat"><div class="astat-num">4</div><div class="astat-label">instruktorów</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testi" style="padding:80px 6%">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="tag">Opinie</div>
+      <h2>Co mówią nasi uczniowie</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi"><div class="testi-stars">★★★★★</div><p>"Przyszłam z bólem pleców, zostałam dla spokoju głowy. Po 3 miesiącach jogi czuję się zupełnie inaczej — i fizycznie, i psychicznie."</p><div class="testi-author"><div class="testi-av">🌸</div><div><div class="testi-name">Magdalena R.</div><div class="testi-since">Uczestniczka od 2 lat</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><p>"Pilates Reformer zupełnie zmienił moją postawę. Karolina jest niesamowitą instruktorką — widzi każdy szczegół i zawsze podpowie jak poprawić ułożenie."</p><div class="testi-author"><div class="testi-av">🍃</div><div><div class="testi-name">Paweł S.</div><div class="testi-since">Uczestnik od roku</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><p>"Małe grupy to ogromna różnica. Czuję się zauważona, nie jak jeden z trzydziestu. To Studio to skarb Kazimierza."</p><div class="testi-author"><div class="testi-av">🌿</div><div><div class="testi-name">Joanna K.</div><div class="testi-since">Uczestniczka od 3 lat</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:90px 6%">
+  <div class="contact-inner">
+    <div>
+      <div class="tag">Kontakt</div>
+      <h2>Zarezerwuj swoje miejsce</h2>
+      <p>Wyślij wiadomość — odpiszemy w ciągu 24 godzin i potwierdzimy rezerwację.</p>
+      <div class="contact-items">
+        <div class="ci"><div class="ci-icon">📍</div>ul. Józefa 18, Kraków · Kazimierz</div>
+        <div class="ci"><div class="ci-icon">📞</div>+48 12 345 67 89</div>
+        <div class="ci"><div class="ci-icon">✉</div>studio@rownowagaruda.pl</div>
+        <div class="ci"><div class="ci-icon">⏰</div>Pon–Pt 7:00–21:00 · Sob–Nd 9:00–18:00</div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault();this.innerHTML='<p style=\'text-align:center;padding:2rem;font-size:1.1rem;\'>✓ Dziękujemy! Odezwiemy się wkrótce.</p>'">
+      <div class="form-row">
+        <input type="text" placeholder="Imię i nazwisko" required/>
+        <input type="email" placeholder="Email" required/>
+      </div>
+      <select>
+        <option value="">Wybierz zajęcia</option>
+        <option>Hatha Joga</option>
+        <option>Pilates Reformer</option>
+        <option>Medytacja</option>
+        <option>Pranayama</option>
+      </select>
+      <textarea rows="4" placeholder="Dodatkowe pytania lub informacje..."></textarea>
+      <button class="submit-btn" type="submit">Wyślij rezerwację →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--accent)">Studio Równowaga</span>
+  <span>© 2025 · ul. Józefa 18, Kraków</span>
+  <span>Built by <a href="index.html" style="color:var(--accent)">RutaHub</a></span>
+</footer>
+
+</body>
+</html>

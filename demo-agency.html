@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forma Studio — Projektujemy marki, które zostają</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#000;--bg2:#0a0a0a;--bg3:#111;
+      --accent:#f5e642;--text:#f0f0f0;--muted:#666;--border:#222;
+      --font:'Space Grotesk',system-ui,sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 5%;height:60px;
+      background:#000;border-bottom:2px solid var(--accent)}
+    .logo{font-size:.95rem;font-weight:700;letter-spacing:4px;text-transform:uppercase}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{font-size:.78rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;
+      transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#000;font-weight:700;font-size:.75rem;
+      padding:10px 22px;letter-spacing:2px;text-transform:uppercase;
+      border:2px solid var(--accent);transition:all .2s}
+    .nav-cta:hover{background:transparent;color:var(--accent)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s}
+    .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:#000;
+      border-bottom:2px solid var(--accent);z-index:99;padding:2rem 5%}
+    .nav-mobile.open{display:block}
+    .nav-mobile ul{list-style:none;display:flex;flex-direction:column;gap:1.5rem}
+    .nav-mobile a{font-size:1rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+    .nav-mobile .nav-cta{display:inline-block;margin-top:1rem}
+
+    /* ─── HERO (EDITORIAL SPLIT) ──────────────────────── */
+    #hero{min-height:100vh;display:grid;
+      grid-template-columns:1fr 420px;
+      border-top:60px solid transparent;
+      position:relative}
+    .hero-left{
+      padding:80px 5% 80px 5%;
+      display:flex;flex-direction:column;justify-content:center;
+      border-right:2px solid var(--border)}
+    .hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:3rem}
+    .hero-eyebrow span{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+    .hero-eyebrow::before{content:'';width:40px;height:2px;background:var(--accent)}
+    h1{font-size:clamp(3.5rem,9vw,9rem);font-weight:700;line-height:.95;
+      letter-spacing:-4px;text-transform:uppercase}
+    h1 .yl{color:var(--accent);display:block}
+    h1 .outline{
+      -webkit-text-stroke:2px var(--text);
+      color:transparent;display:block}
+    .hero-meta{margin-top:3rem;display:flex;gap:3rem;align-items:flex-end}
+    .hero-sub{font-size:1rem;color:var(--muted);line-height:1.75;max-width:380px}
+    .hero-since{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+      border-top:1px solid var(--border);padding-top:1rem;white-space:nowrap}
+    .hero-cta-wrap{margin-top:3.5rem;display:flex;align-items:center;gap:2rem}
+    .btn-primary{background:var(--accent);color:#000;font-weight:700;font-size:.82rem;
+      padding:16px 36px;letter-spacing:2px;text-transform:uppercase;
+      border:2px solid var(--accent);transition:all .2s;display:inline-block}
+    .btn-primary:hover{background:transparent;color:var(--accent)}
+    .btn-link{font-size:.82rem;color:var(--muted);letter-spacing:1px;
+      text-transform:uppercase;text-decoration:underline;
+      text-underline-offset:4px;transition:color .2s}
+    .btn-link:hover{color:var(--accent)}
+
+    .hero-right{display:flex;flex-direction:column;justify-content:flex-end;
+      padding:80px 40px 60px}
+    .hero-stats{display:flex;flex-direction:column;gap:0}
+    .stat-block{padding:2rem 0;border-bottom:1px solid var(--border)}
+    .stat-block:first-child{border-top:1px solid var(--border)}
+    .stat-num{font-size:3.5rem;font-weight:700;letter-spacing:-2px;color:var(--accent);
+      line-height:1}
+    .stat-label{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--muted);margin-top:.4rem}
+    .hero-scroll{margin-top:3rem;font-size:.7rem;letter-spacing:3px;
+      text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+    .hero-scroll::after{content:'↓';font-size:1.2rem;color:var(--accent);
+      animation:bounce .8s ease-in-out infinite alternate}
+    @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(6px)}}
+
+    /* ─── TICKER ──────────────────────────────────────── */
+    .ticker{overflow:hidden;background:var(--accent);padding:13px 0}
+    .ticker-track{display:flex;gap:0;animation:ticker 20s linear infinite;
+      width:max-content}
+    .ticker-item{font-size:.72rem;font-weight:700;letter-spacing:3px;
+      text-transform:uppercase;color:#000;white-space:nowrap;
+      padding:0 2.5rem;border-right:2px solid rgba(0,0,0,.2)}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ─── SERVICES ────────────────────────────────────── */
+    #services{padding:0 5%;background:var(--bg)}
+    .services-inner{max-width:1200px;margin:0 auto}
+    .section-header{display:grid;grid-template-columns:1fr auto;
+      align-items:baseline;padding:80px 0 0;margin-bottom:0;
+      border-bottom:2px solid var(--border)}
+    .section-tag{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+    h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:700;letter-spacing:-2px;
+      text-transform:uppercase;margin-top:.5rem}
+    .section-count{font-size:.72rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+
+    .service-list{margin-top:0}
+    .service-item{display:grid;grid-template-columns:100px 1fr auto;
+      align-items:start;gap:3rem;
+      padding:3rem 0;border-bottom:1px solid var(--border);
+      position:relative;transition:background .2s;cursor:default}
+    .service-item:hover{background:rgba(245,230,66,.03)}
+    .service-item:hover .srv-num{color:var(--accent)}
+    .service-item:hover::after{content:'→';position:absolute;right:0;top:50%;
+      transform:translateY(-50%);font-size:1.5rem;color:var(--accent)}
+    .srv-num{font-size:5rem;font-weight:700;letter-spacing:-4px;color:var(--border);
+      line-height:1;transition:color .3s;padding-top:.2rem}
+    .srv-body h3{font-size:1.6rem;font-weight:700;letter-spacing:-1px;
+      margin-bottom:.75rem;line-height:1.1}
+    .srv-body p{font-size:.88rem;color:var(--muted);line-height:1.7;max-width:500px}
+    .srv-tags{display:flex;flex-direction:column;gap:.4rem;min-width:160px;align-items:flex-end}
+    .stag{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--muted);border:1px solid var(--border);padding:5px 12px}
+
+    /* ─── WORK ────────────────────────────────────────── */
+    #work{margin-top:80px;border-top:2px solid var(--border)}
+    .work-header{display:flex;justify-content:space-between;align-items:baseline;
+      padding:50px 5% 50px;border-bottom:2px solid var(--border)}
+    .work-title-wrap .section-tag{margin-bottom:.5rem}
+    .work-link{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--muted);text-decoration:underline;text-underline-offset:4px;
+      transition:color .2s}
+    .work-link:hover{color:var(--accent)}
+    .work-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto}
+    .work-item{position:relative;overflow:hidden;aspect-ratio:1;cursor:pointer;
+      border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .work-item:nth-child(3n){border-right:none}
+    .work-item:nth-child(4),.work-item:nth-child(5),.work-item:nth-child(6){border-bottom:none}
+    .work-item:first-child{grid-column:span 2;aspect-ratio:2/1}
+    .work-item:last-child{grid-row:span 1}
+    .wi-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      font-size:4rem;transition:transform .5s}
+    .work-item:hover .wi-bg{transform:scale(1.04)}
+    .w1{background:#1a1a1a}
+    .w2{background:#0f1f0f}
+    .w3{background:#1a0f0f}
+    .w4{background:#0f0f1a}
+    .w5{background:#1a1500}
+    .wi-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);
+      transition:background .3s;display:flex;flex-direction:column;
+      justify-content:flex-end;padding:2rem;pointer-events:none}
+    .work-item:hover .wi-overlay{background:rgba(0,0,0,.75)}
+    .wi-overlay h4{font-size:1.2rem;font-weight:700;color:#fff;
+      transform:translateY(10px);opacity:0;transition:all .3s .05s;letter-spacing:-0.5px}
+    .wi-overlay p{font-size:.75rem;color:rgba(255,255,255,.6);
+      transform:translateY(10px);opacity:0;transition:all .3s .1s;
+      letter-spacing:1px;text-transform:uppercase;margin-top:.3rem}
+    .wi-arrow{font-size:1.5rem;color:var(--accent);
+      transform:translateY(10px);opacity:0;transition:all .3s .15s;
+      margin-top:.5rem}
+    .work-item:hover .wi-overlay h4,
+    .work-item:hover .wi-overlay p,
+    .work-item:hover .wi-arrow{transform:translateY(0);opacity:1}
+    .wi-label{position:absolute;top:1.5rem;left:1.5rem;
+      font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+      color:rgba(255,255,255,.35)}
+
+    /* Work item visuals */
+    .wi-brand{display:flex;flex-direction:column;gap:8px;align-items:center}
+    .wi-brand .brand-name{font-size:1.8rem;font-weight:700;letter-spacing:-1px;
+      color:rgba(255,255,255,.15)}
+    .wi-abstract{position:relative;width:100%;height:100%}
+
+    /* ─── PROCESS ─────────────────────────────────────── */
+    #process{padding:100px 5%;border-top:2px solid var(--border);background:var(--bg2)}
+    .process-inner{max-width:1200px;margin:0 auto}
+    .process-header{margin-bottom:60px}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    .process-step{padding:3rem 2.5rem;border-right:1px solid var(--border);position:relative}
+    .process-step:last-child{border-right:none}
+    .ps-num{font-size:4rem;font-weight:700;letter-spacing:-3px;color:var(--accent);
+      line-height:1;margin-bottom:1.5rem}
+    .ps-num::after{content:'';display:block;width:30px;height:2px;
+      background:var(--accent);margin-top:1rem}
+    .process-step h3{font-size:1.1rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-0.3px}
+    .process-step p{font-size:.85rem;color:var(--muted);line-height:1.7}
+
+    /* ─── CTA ─────────────────────────────────────────── */
+    #cta{padding:0;background:var(--accent);border-top:none}
+    .cta-inner{max-width:1200px;margin:0 auto;padding:80px 5%;
+      display:grid;grid-template-columns:1fr auto;align-items:center;gap:4rem}
+    #cta h2{color:#000;letter-spacing:-2px;font-size:clamp(2rem,4vw,3.2rem);
+      text-transform:uppercase}
+    #cta h2 span{display:block;color:rgba(0,0,0,.4);font-size:1rem;
+      letter-spacing:2px;font-weight:500;text-transform:uppercase;margin-bottom:.75rem}
+    .cta-actions{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
+    .btn-dark{background:#000;color:var(--accent);font-weight:700;font-size:.82rem;
+      padding:16px 36px;letter-spacing:2px;text-transform:uppercase;
+      border:2px solid #000;transition:all .2s;white-space:nowrap}
+    .btn-dark:hover{background:transparent;color:#000}
+    .cta-note{font-size:.72rem;letter-spacing:1px;color:rgba(0,0,0,.5);text-transform:uppercase}
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer{background:#000;border-top:2px solid var(--border);padding:60px 5% 40px}
+    .footer-inner{max-width:1200px;margin:0 auto}
+    .footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;
+      padding-bottom:3rem;border-bottom:1px solid var(--border)}
+    .footer-brand .logo{font-size:1rem;letter-spacing:4px;text-transform:uppercase;font-weight:700}
+    .footer-brand p{font-size:.82rem;color:var(--muted);margin-top:1rem;line-height:1.6}
+    .footer-col h4{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--accent);margin-bottom:1.5rem}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+    .footer-col li a{font-size:.83rem;color:var(--muted);transition:color .2s}
+    .footer-col li a:hover{color:var(--text)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;
+      padding-top:2rem}
+    .footer-legal{font-size:.72rem;color:var(--muted)}
+    .made-by{font-size:.72rem;color:var(--muted)}
+    .made-by a{color:var(--accent)}
+
+    /* ─── LANGUAGE TOGGLE ─────────────────────────────── */
+    .lang-toggle{display:flex;gap:0;border:1px solid var(--border)}
+    .lang-btn{background:transparent;border:none;color:var(--muted);
+      font-size:.7rem;letter-spacing:1px;text-transform:uppercase;
+      padding:6px 12px;cursor:pointer;transition:all .2s;font-family:var(--font)}
+    .lang-btn.active{background:var(--accent);color:#000;font-weight:700}
+    [data-lang="en"]{display:none}
+
+    /* ─── MOBILE ──────────────────────────────────────── */
+    @media(max-width:900px){
+      #hero{grid-template-columns:1fr;grid-template-rows:auto auto}
+      .hero-right{border-top:2px solid var(--border);padding:3rem 5%;
+        flex-direction:row;flex-wrap:wrap;gap:0}
+      .hero-stats{flex-direction:row;flex-wrap:wrap;width:100%}
+      .stat-block{flex:1;min-width:120px;padding:1.5rem 1rem}
+      .hero-scroll{display:none}
+      .nav-links,.nav-cta{display:none}
+      .hamburger{display:flex}
+      .service-item{grid-template-columns:60px 1fr;gap:1.5rem}
+      .srv-tags{display:none}
+      .srv-num{font-size:3rem}
+      .process-steps{grid-template-columns:1fr 1fr}
+      .process-step{border-right:none;border-bottom:1px solid var(--border)}
+      .work-grid{grid-template-columns:1fr 1fr}
+      .work-item:first-child{grid-column:span 2}
+      .cta-inner{grid-template-columns:1fr}
+      .cta-actions{align-items:flex-start}
+      .footer-top{grid-template-columns:1fr}
+      h1{letter-spacing:-2px}
+    }
+    @media(max-width:580px){
+      .work-grid{grid-template-columns:1fr}
+      .work-item:first-child{grid-column:span 1;aspect-ratio:1}
+      .process-steps{grid-template-columns:1fr}
+      .section-header{grid-template-columns:1fr}
+      .hero-left{padding:70px 5% 3rem}
+      h1{font-size:clamp(2.8rem,12vw,5rem);letter-spacing:-2px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">FORMA<span>.</span>STUDIO</div>
+  <ul class="nav-links">
+    <li><a href="#services" data-lang="pl">Usługi</a><a href="#services" data-lang="en" style="display:none">Services</a></li>
+    <li><a href="#work" data-lang="pl">Portfolio</a><a href="#work" data-lang="en" style="display:none">Work</a></li>
+    <li><a href="#process" data-lang="pl">Proces</a><a href="#process" data-lang="en" style="display:none">Process</a></li>
+    <li><a href="#cta" data-lang="pl">Kontakt</a><a href="#cta" data-lang="en" style="display:none">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('pl')">PL</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#cta" class="nav-cta" data-lang="pl">Porozmawiajmy</a>
+    <a href="#cta" class="nav-cta" data-lang="en" style="display:none">Let's talk</a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="#services" onclick="closeMenu()" data-lang="pl">Usługi</a><a href="#services" onclick="closeMenu()" data-lang="en" style="display:none">Services</a></li>
+    <li><a href="#work" onclick="closeMenu()" data-lang="pl">Portfolio</a><a href="#work" onclick="closeMenu()" data-lang="en" style="display:none">Work</a></li>
+    <li><a href="#process" onclick="closeMenu()" data-lang="pl">Proces</a><a href="#process" onclick="closeMenu()" data-lang="en" style="display:none">Process</a></li>
+    <li><a href="#cta" onclick="closeMenu()" data-lang="pl">Kontakt</a><a href="#cta" onclick="closeMenu()" data-lang="en" style="display:none">Contact</a></li>
+    <li><a href="#cta" class="nav-cta" onclick="closeMenu()" data-lang="pl">Porozmawiajmy</a><a href="#cta" class="nav-cta" onclick="closeMenu()" data-lang="en" style="display:none">Let's talk</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span data-lang="pl">Agencja kreatywna · Warszawa</span>
+      <span data-lang="en">Creative Agency · Warsaw</span>
+    </div>
+    <h1>
+      <span data-lang="pl">MARKI<br><span class="yl">KTÓRE</span><br><span class="outline">ZOSTAJĄ</span></span>
+      <span data-lang="en">BRANDS<br><span class="yl">THAT</span><br><span class="outline">ENDURE</span></span>
+    </h1>
+    <div class="hero-meta">
+      <p class="hero-sub" data-lang="pl">Tworzymy identyfikacje wizualne, strony i kampanie dla firm, które chcą być zapamiętane — nie tylko zauważone.</p>
+      <p class="hero-sub" data-lang="en">We build brand identities, websites and campaigns for companies that want to be remembered — not just noticed.</p>
+    </div>
+    <div class="hero-cta-wrap">
+      <a href="#work" class="btn-primary" data-lang="pl">Zobacz realizacje</a>
+      <a href="#work" class="btn-primary" data-lang="en">See our work</a>
+      <a href="#services" class="btn-link" data-lang="pl">Co robimy →</a>
+      <a href="#services" class="btn-link" data-lang="en">What we do →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-block">
+        <div class="stat-num">120+</div>
+        <div class="stat-label" data-lang="pl">Projektów</div>
+        <div class="stat-label" data-lang="en">Projects</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">8</div>
+        <div class="stat-label" data-lang="pl">Lat na rynku</div>
+        <div class="stat-label" data-lang="en">Years active</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">3×</div>
+        <div class="stat-label" data-lang="pl">Nagrody KTR</div>
+        <div class="stat-label" data-lang="en">KTR Awards</div>
+      </div>
+    </div>
+    <div class="hero-scroll" data-lang="pl">Przewiń</div>
+    <div class="hero-scroll" data-lang="en">Scroll</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item" data-lang="pl">Brand Identity</span>
+    <span class="ticker-item" data-lang="pl">Strony WWW</span>
+    <span class="ticker-item" data-lang="pl">Kampanie Cyfrowe</span>
+    <span class="ticker-item" data-lang="pl">Motion Design</span>
+    <span class="ticker-item" data-lang="pl">Packaging</span>
+    <span class="ticker-item" data-lang="pl">Social Media</span>
+    <span class="ticker-item" data-lang="en">Brand Identity</span>
+    <span class="ticker-item" data-lang="en">Web Design</span>
+    <span class="ticker-item" data-lang="en">Digital Campaigns</span>
+    <span class="ticker-item" data-lang="en">Motion Design</span>
+    <span class="ticker-item" data-lang="en">Packaging</span>
+    <span class="ticker-item" data-lang="en">Social Media</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item" data-lang="pl">Brand Identity</span>
+    <span class="ticker-item" data-lang="pl">Strony WWW</span>
+    <span class="ticker-item" data-lang="pl">Kampanie Cyfrowe</span>
+    <span class="ticker-item" data-lang="pl">Motion Design</span>
+    <span class="ticker-item" data-lang="pl">Packaging</span>
+    <span class="ticker-item" data-lang="pl">Social Media</span>
+    <span class="ticker-item" data-lang="en">Brand Identity</span>
+    <span class="ticker-item" data-lang="en">Web Design</span>
+    <span class="ticker-item" data-lang="en">Digital Campaigns</span>
+    <span class="ticker-item" data-lang="en">Motion Design</span>
+    <span class="ticker-item" data-lang="en">Packaging</span>
+    <span class="ticker-item" data-lang="en">Social Media</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-tag" data-lang="pl">/ Zakres działań</div>
+        <div class="section-tag" data-lang="en">/ What we do</div>
+        <h2 data-lang="pl">USŁUGI</h2>
+        <h2 data-lang="en">SERVICES</h2>
+      </div>
+      <div class="section-count">04</div>
+    </div>
+    <div class="service-list">
+
+      <div class="service-item">
+        <div class="srv-num">01</div>
+        <div class="srv-body">
+          <h3 data-lang="pl">Identyfikacja Wizualna</h3>
+          <h3 data-lang="en">Brand Identity</h3>
+          <p data-lang="pl">Logo, paleta, typografia, księga znaku. Budujemy systemy wizualne, które działają na każdym formacie — od wizytówki po billboard.</p>
+          <p data-lang="en">Logo, colour palette, typography, brand guidelines. We build visual systems that work everywhere — from business cards to billboards.</p>
+        </div>
+        <div class="srv-tags">
+          <span class="stag">LOGO</span>
+          <span class="stag">BRAND BOOK</span>
+          <span class="stag">TYPOGRAPHY</span>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="srv-num">02</div>
+        <div class="srv-body">
+          <h3 data-lang="pl">Strony & Sklepy</h3>
+          <h3 data-lang="en">Websites & Shops</h3>
+          <p data-lang="pl">Projektujemy i wdrażamy strony www oraz sklepy internetowe z naciskiem na konwersję i doświadczenie użytkownika.</p>
+          <p data-lang="en">We design and build websites and e-commerce stores with a focus on conversion and user experience.</p>
+        </div>
+        <div class="srv-tags">
+          <span class="stag">WEB DESIGN</span>
+          <span class="stag">DEV</span>
+          <span class="stag">E-COMM</span>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="srv-num">03</div>
+        <div class="srv-body">
+          <h3 data-lang="pl">Kampanie Cyfrowe</h3>
+          <h3 data-lang="en">Digital Campaigns</h3>
+          <p data-lang="pl">Kreacja reklamowa do mediów społecznościowych, Google Ads i e-mail marketingu. Od konceptu po gotowe materiały do emisji.</p>
+          <p data-lang="en">Ad creatives for social media, Google Ads and email marketing. From concept to production-ready assets.</p>
+        </div>
+        <div class="srv-tags">
+          <span class="stag">META ADS</span>
+          <span class="stag">GOOGLE</span>
+          <span class="stag">EMAIL</span>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="srv-num">04</div>
+        <div class="srv-body">
+          <h3 data-lang="pl">Packaging & Print</h3>
+          <h3 data-lang="en">Packaging & Print</h3>
+          <p data-lang="pl">Projektowanie opakowań, materiałów drukowanych i POS. Pełna przygotowalnia do druku wliczona w projekt.</p>
+          <p data-lang="en">Packaging, print materials and POS design. Full print prepress included in every project.</p>
+        </div>
+        <div class="srv-tags">
+          <span class="stag">PACKAGING</span>
+          <span class="stag">PRINT</span>
+          <span class="stag">POS</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PORTFOLIO -->
+<section id="work">
+  <div class="work-header">
+    <div class="work-title-wrap">
+      <div class="section-tag" data-lang="pl">/ Wybrane realizacje</div>
+      <div class="section-tag" data-lang="en">/ Selected work</div>
+      <h2 data-lang="pl">PORTFOLIO</h2>
+      <h2 data-lang="en">PORTFOLIO</h2>
+    </div>
+    <a href="#cta" class="work-link" data-lang="pl">Pełne portfolio →</a>
+    <a href="#cta" class="work-link" data-lang="en">Full portfolio →</a>
+  </div>
+  <div class="work-grid">
+
+    <!-- item 1 — wide -->
+    <div class="work-item">
+      <div class="wi-bg w1">
+        <div class="wi-brand">
+          <div style="font-size:3.5rem;font-weight:700;letter-spacing:-3px;color:rgba(255,255,255,.12)">KOVE</div>
+          <div style="display:flex;gap:8px">
+            <div style="width:50px;height:50px;background:#6c63ff;opacity:.5"></div>
+            <div style="width:50px;height:50px;background:#00d4ff;opacity:.4"></div>
+            <div style="width:50px;height:50px;background:#f5e642;opacity:.3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wi-label" data-lang="pl">Identyfikacja wizualna · 2024</div>
+      <div class="wi-label" data-lang="en">Brand identity · 2024</div>
+      <div class="wi-overlay">
+        <h4>Kove Finance</h4>
+        <p data-lang="pl">Identyfikacja wizualna</p>
+        <p data-lang="en">Brand Identity</p>
+        <div class="wi-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- item 2 -->
+    <div class="work-item">
+      <div class="wi-bg w2">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:80px;height:80px;border:3px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem">🌿</div>
+          <div style="font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.15)">Naturals</div>
+        </div>
+      </div>
+      <div class="wi-label" data-lang="pl">Packaging · 2024</div>
+      <div class="wi-label" data-lang="en">Packaging · 2024</div>
+      <div class="wi-overlay">
+        <h4>Naturals Skincare</h4>
+        <p data-lang="pl">Packaging & Print</p>
+        <p data-lang="en">Packaging & Print</p>
+        <div class="wi-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- item 3 -->
+    <div class="work-item">
+      <div class="wi-bg w3">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:1.5rem;width:100%">
+          <div style="background:rgba(34,197,94,.12);height:60px;border:1px solid rgba(34,197,94,.15)"></div>
+          <div style="background:rgba(34,197,94,.07);height:60px;border:1px solid rgba(34,197,94,.1)"></div>
+          <div style="background:rgba(34,197,94,.07);height:60px;border:1px solid rgba(34,197,94,.1);grid-column:span 2"></div>
+        </div>
+      </div>
+      <div class="wi-label" data-lang="pl">Web Design · 2023</div>
+      <div class="wi-label" data-lang="en">Web Design · 2023</div>
+      <div class="wi-overlay">
+        <h4>GreenLab Tech</h4>
+        <p data-lang="pl">Strona & Aplikacja</p>
+        <p data-lang="en">Web & App</p>
+        <div class="wi-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- item 4 -->
+    <div class="work-item">
+      <div class="wi-bg w4">
+        <div style="font-size:4rem;font-weight:900;letter-spacing:-4px;color:rgba(224,64,251,.2)">VX</div>
+      </div>
+      <div class="wi-label" data-lang="pl">Kampania · 2023</div>
+      <div class="wi-label" data-lang="en">Campaign · 2023</div>
+      <div class="wi-overlay">
+        <h4>Vox Media PL</h4>
+        <p data-lang="pl">Kampania Cyfrowa</p>
+        <p data-lang="en">Digital Campaign</p>
+        <div class="wi-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- item 5 -->
+    <div class="work-item">
+      <div class="wi-bg w5">
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="width:14px;height:14px;background:rgba(245,230,66,.4)"></div>
+          <div style="width:14px;height:14px;background:rgba(245,230,66,.25)"></div>
+          <div style="width:14px;height:14px;background:rgba(245,230,66,.15)"></div>
+        </div>
+      </div>
+      <div class="wi-label" data-lang="pl">Branding · 2023</div>
+      <div class="wi-label" data-lang="en">Branding · 2023</div>
+      <div class="wi-overlay">
+        <h4>Aureo Coffee</h4>
+        <p data-lang="pl">Brand Identity</p>
+        <p data-lang="en">Brand Identity</p>
+        <div class="wi-arrow">→</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="section-tag" data-lang="pl">/ Jak pracujemy</div>
+      <div class="section-tag" data-lang="en">/ How we work</div>
+      <h2 data-lang="pl">PROCES</h2>
+      <h2 data-lang="en">PROCESS</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="ps-num">01</div>
+        <h3 data-lang="pl">Odkrycie</h3>
+        <h3 data-lang="en">Discovery</h3>
+        <p data-lang="pl">Poznajemy Twój biznes, konkurencję i grupę docelową. Bez tego kroku nie ma dobrego projektu.</p>
+        <p data-lang="en">We get to know your business, competition and target audience. Without this step, there's no good design.</p>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">02</div>
+        <h3 data-lang="pl">Strategia</h3>
+        <h3 data-lang="en">Strategy</h3>
+        <p data-lang="pl">Definiujemy pozycjonowanie, tone of voice i kierunek wizualny. Decyzje podejmujemy razem z Tobą.</p>
+        <p data-lang="en">We define positioning, tone of voice and visual direction. Decisions are made together with you.</p>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">03</div>
+        <h3 data-lang="pl">Realizacja</h3>
+        <h3 data-lang="en">Execution</h3>
+        <p data-lang="pl">Projektujemy, iterujemy i dopracowujemy każdy szczegół. Dwie rundy poprawek wliczone w cenę.</p>
+        <p data-lang="en">We design, iterate and refine every detail. Two revision rounds included in the price.</p>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">04</div>
+        <h3 data-lang="pl">Wdrożenie</h3>
+        <h3 data-lang="en">Launch</h3>
+        <p data-lang="pl">Przekazujemy gotowe pliki i asystujemy przy wdrożeniu. Zawsze dostępni po starcie przez 30 dni.</p>
+        <p data-lang="en">We hand over final files and assist with implementation. Always available post-launch for 30 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <h2>
+        <span data-lang="pl">Gotowy na zmianę?</span>
+        <span data-lang="en">Ready for a change?</span>
+        <span data-lang="pl" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:#000;letter-spacing:-1px;font-weight:700;text-transform:uppercase">Porozmawiajmy<br>o Twoim projekcie.</span>
+        <span data-lang="en" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:#000;letter-spacing:-1px;font-weight:700;text-transform:uppercase">Let's talk about<br>your project.</span>
+      </h2>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:studio@formadesign.pl" class="btn-dark" data-lang="pl">Napisz do nas</a>
+      <a href="mailto:studio@formadesign.pl" class="btn-dark" data-lang="en">Get in touch</a>
+      <div class="cta-note" data-lang="pl">studio@formadesign.pl · +48 22 000 000</div>
+      <div class="cta-note" data-lang="en">studio@formadesign.pl · +48 22 000 000</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">FORMA<span style="color:var(--accent)">.</span>STUDIO</div>
+        <p data-lang="pl">Agencja kreatywna specjalizująca się w identyfikacjach wizualnych i komunikacji cyfrowej dla ambitnych marek.</p>
+        <p data-lang="en">A creative agency specialising in brand identities and digital communication for ambitious brands.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-lang="pl">Usługi</h4>
+        <h4 data-lang="en">Services</h4>
+        <ul>
+          <li><a href="#" data-lang="pl">Identyfikacja wizualna</a><a href="#" data-lang="en">Brand Identity</a></li>
+          <li><a href="#" data-lang="pl">Strony WWW</a><a href="#" data-lang="en">Web Design</a></li>
+          <li><a href="#" data-lang="pl">Kampanie cyfrowe</a><a href="#" data-lang="en">Digital Campaigns</a></li>
+          <li><a href="#" data-lang="pl">Packaging</a><a href="#" data-lang="en">Packaging</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-lang="pl">Kontakt</h4>
+        <h4 data-lang="en">Contact</h4>
+        <ul>
+          <li><a href="#">studio@formadesign.pl</a></li>
+          <li><a href="#">+48 22 000 000</a></li>
+          <li><a href="#" data-lang="pl">ul. Marszałkowska 10, Warszawa</a><a href="#" data-lang="en">10 Marszałkowska St, Warsaw</a></li>
+          <li><a href="#" data-lang="pl">Instagram</a><a href="#" data-lang="en">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal" data-lang="pl">© 2025 Forma Studio. Wszelkie prawa zastrzeżone.</div>
+      <div class="footer-legal" data-lang="en">© 2025 Forma Studio. All rights reserved.</div>
+      <div class="made-by">Demo by <a href="../index.html">RutaHub</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.style.display = el.dataset.lang === lang ? '' : 'none';
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+    // fix nav-cta visibility in flex container
+    document.querySelectorAll('nav [data-lang]').forEach(el => {
+      if(el.dataset.lang === lang) el.style.display = '';
+      else el.style.display = 'none';
+    });
+  }
+
+  function toggleMenu() {
+    document.getElementById('navMobile').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navMobile').classList.remove('open');
+  }
+
+  // Init PL
+  setLang('pl');
+</script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anna Dąbrowska — Coaching kariery i przywództwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#fdfcf9;--bg2:#f5f1ea;--bg3:#ede8de;
+      --accent:#8b6914;--accent2:#2d4a3e;
+      --text:#1a1a1a;--muted:#7a7060;--border:#e8e2d8;
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'Inter',system-ui,sans-serif;
+      --r:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:inherit;text-decoration:none}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 7%;height:70px;
+      background:rgba(253,252,249,0.93);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.3px}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{font-size:.82rem;color:var(--muted);transition:color .2s;letter-spacing:.3px}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{border:1.5px solid var(--accent);color:var(--accent);font-weight:600;font-size:.82rem;
+      padding:8px 22px;border-radius:50px;transition:all .2s}
+    .nav-cta:hover{background:var(--accent);color:#fff}
+
+    /* HERO */
+    #hero{padding:120px 7% 80px;max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .hero-text{}
+    .hero-label{font-size:.7rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+    .hero-label::before{content:'';width:30px;height:1px;background:var(--accent)}
+    h1{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);
+      font-weight:600;line-height:1.2;letter-spacing:-.5px;margin-bottom:1.5rem}
+    h1 em{font-style:italic;color:var(--accent)}
+    .hero-sub{font-size:.95rem;color:var(--muted);max-width:420px;line-height:1.85;margin-bottom:2.5rem}
+    .btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-p{background:var(--accent2);color:#fff;font-weight:600;font-size:.88rem;
+      padding:13px 28px;border-radius:50px;transition:all .25s}
+    .btn-p:hover{background:#1e3328;transform:translateY(-2px)}
+    .btn-o{color:var(--muted);font-size:.88rem;display:flex;align-items:center;gap:6px;transition:color .2s}
+    .btn-o:hover{color:var(--text)}
+    .hero-proof{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;
+      padding-top:2.5rem;border-top:1px solid var(--border)}
+    .proof-num{text-align:center}
+    .proof-num span{font-family:var(--serif);font-size:1.8rem;font-weight:600;display:block;line-height:1}
+    .proof-num small{font-size:.72rem;color:var(--muted)}
+    .proof-sep{width:1px;height:36px;background:var(--border)}
+    .hero-visual{position:relative}
+    .hero-photo{width:100%;aspect-ratio:.85;border-radius:24px;
+      background:linear-gradient(160deg,#d4c4a0 0%,#c0b090 40%,#a09070 100%);
+      display:flex;align-items:center;justify-content:center;font-size:9rem}
+    .hero-quote-card{position:absolute;bottom:-1.5rem;right:-1.5rem;
+      background:#fff;border-radius:16px;padding:1.4rem 1.6rem;
+      box-shadow:0 12px 40px rgba(0,0,0,.1);max-width:240px}
+    .quote-mark{font-family:var(--serif);font-size:2.5rem;color:var(--accent);line-height:.8;margin-bottom:.4rem}
+    .quote-text{font-size:.78rem;color:var(--muted);line-height:1.6;font-style:italic}
+    .quote-author{font-size:.72rem;font-weight:600;color:var(--text);margin-top:.6rem}
+
+    /* SECTIONS */
+    section{padding:90px 7%}
+    .sec-inner{max-width:1200px;margin:0 auto}
+    .tag{font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--accent);margin-bottom:.8rem;display:inline-block}
+    h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);
+      font-weight:600;letter-spacing:-.3px;margin-bottom:1rem;line-height:1.2}
+    .lead{font-size:.95rem;color:var(--muted);max-width:560px;line-height:1.85}
+
+    /* PROGRAMS */
+    #programs{background:var(--bg2)}
+    .programs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.5rem;margin-top:4rem}
+    .prog{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);
+      padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+    .prog::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      opacity:0;transition:opacity .3s}
+    .prog:nth-child(1)::before{background:linear-gradient(90deg,#8b6914,#c49a2c)}
+    .prog:nth-child(2)::before{background:linear-gradient(90deg,#2d4a3e,#3d6b58)}
+    .prog:nth-child(3)::before{background:linear-gradient(90deg,#5a3f7a,#8b6baa)}
+    .prog:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+    .prog:hover::before{opacity:1}
+    .prog-icon{font-size:2rem;margin-bottom:1.2rem}
+    .prog-type{font-size:.68rem;font-weight:600;letter-spacing:1.5px;
+      text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+    .prog h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin-bottom:.7rem}
+    .prog p{font-size:.85rem;color:var(--muted);line-height:1.75;margin-bottom:1.2rem}
+    .prog-details{display:flex;gap:1.2rem;font-size:.75rem;color:var(--muted)}
+    .prog-details span{display:flex;align-items:center;gap:4px}
+    .prog-price{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between}
+    .prog-price-val{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--accent)}
+    .prog-cta{font-size:.78rem;font-weight:600;color:var(--accent2);
+      display:flex;align-items:center;gap:4px}
+    .prog-cta:hover{text-decoration:underline}
+
+    /* ABOUT */
+    #about{background:var(--bg)}
+    .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+    .about-photo{border-radius:24px;overflow:hidden;
+      background:linear-gradient(145deg,#c8b88a,#a09060);
+      aspect-ratio:.9;display:flex;align-items:center;justify-content:center;font-size:8rem}
+    .about-content .tag{margin-bottom:1rem}
+    .about-content h2{margin-bottom:1.5rem}
+    .about-content p{color:var(--muted);line-height:1.85;font-size:.93rem;margin-bottom:1rem}
+    .certs{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+    .cert{background:var(--bg2);border:1px solid var(--border);
+      border-radius:6px;padding:5px 12px;font-size:.75rem;font-weight:600;color:var(--text)}
+
+    /* TESTIMONIALS */
+    #testi{background:var(--bg2)}
+    .testi-featured{background:var(--accent2);border-radius:20px;padding:3rem;
+      color:#fff;margin-bottom:2rem;position:relative;overflow:hidden}
+    .testi-featured::before{content:'❝';font-family:var(--serif);font-size:8rem;
+      color:rgba(255,255,255,.08);position:absolute;top:-1rem;left:1rem;line-height:1}
+    .tf-text{font-family:var(--serif);font-size:1.3rem;font-style:italic;
+      line-height:1.65;margin-bottom:1.5rem;position:relative}
+    .tf-author{display:flex;align-items:center;gap:12px}
+    .tf-av{width:44px;height:44px;border-radius:50%;
+      background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .tf-name{font-weight:600;font-size:.9rem}
+    .tf-role{font-size:.78rem;color:rgba(255,255,255,.65)}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+    .testi{background:var(--bg);border:1.5px solid var(--border);
+      border-radius:var(--r);padding:1.6rem}
+    .testi-stars{color:#d4a017;font-size:.85rem;letter-spacing:1px;margin-bottom:.8rem}
+    .testi p{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;font-style:italic}
+    .ta{display:flex;align-items:center;gap:8px}
+    .ta-av{width:32px;height:32px;border-radius:50%;
+      background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+    .ta-name{font-size:.8rem;font-weight:600}
+    .ta-role{font-size:.7rem;color:var(--muted)}
+
+    /* BOOKING */
+    #booking{background:var(--bg)}
+    .booking-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start}
+    .booking-info .tag{margin-bottom:1rem}
+    .booking-info h2{margin-bottom:1.2rem}
+    .booking-info p{color:var(--muted);line-height:1.85;font-size:.93rem;margin-bottom:2rem}
+    .contact-items{display:flex;flex-direction:column;gap:.8rem}
+    .ci{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted)}
+    .ci-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+    form{display:flex;flex-direction:column;gap:1rem;
+      background:var(--bg2);border:1.5px solid var(--border);border-radius:20px;padding:2.5rem}
+    form h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin-bottom:.3rem}
+    form .form-lead{font-size:.82rem;color:var(--muted);margin-bottom:.8rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    form input,form select,form textarea{
+      background:#fff;border:1.5px solid var(--border);border-radius:10px;
+      padding:11px 14px;color:var(--text);font-family:var(--sans);font-size:.85rem;
+      outline:none;transition:border-color .2s;resize:vertical}
+    form input::placeholder,form textarea::placeholder{color:#b8b0a0}
+    form input:focus,form select:focus,form textarea:focus{border-color:var(--accent)}
+    form select option{background:#fff}
+    .submit-btn{background:var(--accent2);color:#fff;font-weight:600;font-size:.88rem;
+      padding:13px;border-radius:50px;cursor:pointer;border:none;font-family:var(--sans);
+      transition:all .2s;margin-top:.3rem}
+    .submit-btn:hover{background:#1e3328;transform:translateY(-1px)}
+    .form-privacy{font-size:.72rem;color:var(--muted);text-align:center;margin-top:.5rem}
+
+    footer{padding:2rem 7%;border-top:1px solid var(--border);
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:.78rem;color:var(--muted);flex-wrap:wrap;gap:1rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      #hero{grid-template-columns:1fr;gap:3rem;padding:100px 5% 60px}
+      .hero-quote-card{right:0;bottom:-1rem}
+      .about-grid,.booking-grid{grid-template-columns:1fr;gap:2.5rem}
+      .form-row{grid-template-columns:1fr}
+      footer{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Anna Dąbrowska</div>
+  <ul class="nav-links">
+    <li><a href="#programs">Programy</a></li>
+    <li><a href="#about">O mnie</a></li>
+    <li><a href="#testi">Opinie</a></li>
+    <li><a href="#booking">Kontakt</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Umów sesję</a>
+</nav>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 7%">
+<section id="hero" style="padding:120px 0 80px">
+  <div class="hero-text">
+    <div class="hero-label">Coaching kariery & przywództwa</div>
+    <h1>Czas na zmianę,<br/>która <em>zostaje.</em></h1>
+    <p class="hero-sub">Pomagam liderom i menedżerom odblokować potencjał, odnaleźć kierunek i budować kariery zgodne z wartościami — nie tylko z oczekiwaniami innych.</p>
+    <div class="btns">
+      <a href="#booking" class="btn-p">Umów bezpłatną konsultację</a>
+      <a href="#programs" class="btn-o">Poznaj programy →</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-num"><span>200+</span><small>klientów</small></div>
+      <div class="proof-sep"></div>
+      <div class="proof-num"><span>8 lat</span><small>doświadczenia</small></div>
+      <div class="proof-sep"></div>
+      <div class="proof-num"><span>4.9★</span><small>ocena klientów</small></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo">👩‍💼</div>
+    <div class="hero-quote-card">
+      <div class="quote-mark">❝</div>
+      <div class="quote-text">Po 6 miesiącach coachingu awansowałam i wreszcie wiem, gdzie zmierzam.</div>
+      <div class="quote-author">— Marta W., Dyrektor ds. Produktu</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="programs">
+  <div class="sec-inner">
+    <div class="tag">Programy coachingowe</div>
+    <h2>Znajdź swój program</h2>
+    <p class="lead">Każdy program jest dopasowany do etapu, na którym jesteś — i celu, który chcesz osiągnąć.</p>
+    <div class="programs-grid">
+      <div class="prog">
+        <div class="prog-icon">🧭</div>
+        <div class="prog-type">Indywidualny · 3 miesiące</div>
+        <h3>Coaching kariery</h3>
+        <p>Dla osób na rozdrożu — zmieniających branżę, rozważających awans lub szukających swojej ścieżki. Razem definiujemy kierunek i budujemy plan działania.</p>
+        <div class="prog-details"><span>📅 8 sesji</span><span>⏱ 60 min/sesja</span></div>
+        <div class="prog-price">
+          <span class="prog-price-val">3 200 PLN</span>
+          <a href="#booking" class="prog-cta">Dowiedz się więcej →</a>
+        </div>
+      </div>
+      <div class="prog">
+        <div class="prog-icon">🌿</div>
+        <div class="prog-type">Indywidualny · 6 miesięcy</div>
+        <h3>Coaching przywódczy</h3>
+        <p>Dla liderów, którzy chcą stać się lepszymi managerami — budować autorytet, zarządzać energią i tworzyć środowisko, w którym ludzie chcą pracować.</p>
+        <div class="prog-details"><span>📅 18 sesji</span><span>⏱ 75 min/sesja</span></div>
+        <div class="prog-price">
+          <span class="prog-price-val">7 800 PLN</span>
+          <a href="#booking" class="prog-cta">Dowiedz się więcej →</a>
+        </div>
+      </div>
+      <div class="prog">
+        <div class="prog-icon">✨</div>
+        <div class="prog-type">Grupowy · online</div>
+        <h3>Masterclass: Liderka w praktyce</h3>
+        <p>8-tygodniowy program dla kobiet w roli liderki. Praca na konkretnych wyzwaniach, społeczność i cotygodniowe sesje na żywo z nagraniami.</p>
+        <div class="prog-details"><span>📅 8 tygodni</span><span>👥 Max 12 osób</span></div>
+        <div class="prog-price">
+          <span class="prog-price-val">1 400 PLN</span>
+          <a href="#booking" class="prog-cta">Zapisz się →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div class="about-photo">🌸</div>
+      <div class="about-content">
+        <div class="tag">O mnie</div>
+        <h2>Nie uczę teorii.<br/>Pracuję z Twoją rzeczywistością.</h2>
+        <p>Przez 12 lat pracowałam jako menedżerka w korporacjach — zanim sama zdecydowałam się na zmianę. Wiem, jak wygląda wypalenie zawodowe, syndrom oszusta i strach przed podjęciem decyzji. Znam te uczucia z własnego doświadczenia.</p>
+        <p>Dziś pomagam innym przejść przez to, co sama przeszłam. Nie z podręcznika — z życia. Jestem certyfikowaną coachką ICF na poziomie PCC, a moje podejście łączy coaching oparty na wartościach z narzędziami pozytywnej psychologii.</p>
+        <div class="certs">
+          <span class="cert">ICF — PCC</span>
+          <span class="cert">Positive Intelligence</span>
+          <span class="cert">DISC Consultant</span>
+          <span class="cert">Coaching Systemiczny</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testi">
+  <div class="sec-inner">
+    <div class="tag">Opinie</div>
+    <h2>Historie klientów</h2>
+    <div class="testi-featured">
+      <p class="tf-text">"Zaczęłam coaching bez przekonania — myślałam, że to nie dla mnie. Po pierwszej sesji wiedziałam, że to jeden z najlepszych wyborów zawodowych, jakie podjęłam. Anna pomogła mi zobaczyć siebie w sposób, w jaki sama nie potrafiłam."</p>
+      <div class="tf-author">
+        <div class="tf-av">👩</div>
+        <div>
+          <div class="tf-name">Karolina B.</div>
+          <div class="tf-role">VP Operations · 3 miesiące coachingu kariery</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi"><div class="testi-stars">★★★★★</div><p>"Awansowałem w 4 miesiące. Praca z Anną dała mi jasność co do moich mocnych stron i tego, jak z nich korzystać w trudnych rozmowach z zarządem."</p><div class="ta"><div class="ta-av">👨</div><div><div class="ta-name">Piotr M.</div><div class="ta-role">Head of Engineering</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><p>"Masterclass zmienił sposób, w jaki myślę o sobie jako liderce. Przestałam przepraszać za swoją pozycję i zaczęłam z niej korzystać."</p><div class="ta"><div class="ta-av">👩</div><div><div class="ta-name">Iga W.</div><div class="ta-role">Product Manager</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><p>"Zmieniłam branżę po 10 latach. Bałam się tego kroku. Coaching z Anną dał mi odwagę — i plan. Po 5 miesiącach mam wymarzoną pracę."</p><div class="ta"><div class="ta-av">👩</div><div><div class="ta-name">Agata R.</div><div class="ta-role">UX Lead (ex-Finance)</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="sec-inner">
+    <div class="booking-grid">
+      <div class="booking-info">
+        <div class="tag">Kontakt</div>
+        <h2>Zacznijmy<br/>od rozmowy</h2>
+        <p>Pierwsza konsultacja (30 minut) jest bezpłatna i bez zobowiązań. Sprawdzimy razem czy moje podejście pasuje do tego, czego potrzebujesz.</p>
+        <div class="contact-items">
+          <div class="ci"><div class="ci-icon">✉</div>anna@dabrowska-coaching.pl</div>
+          <div class="ci"><div class="ci-icon">📞</div>+48 501 234 567</div>
+          <div class="ci"><div class="ci-icon">🔗</div>linkedin.com/in/anna-dabrowska-coach</div>
+          <div class="ci"><div class="ci-icon">⏰</div>Sesje online — strefa czasowa CET</div>
+        </div>
+      </div>
+      <div>
+        <form onsubmit="event.preventDefault();this.innerHTML='<div style=\'text-align:center;padding:3rem\'><div style=\'font-size:2rem;margin-bottom:1rem\'>✉</div><div style=\'font-family:Cormorant Garamond,serif;font-size:1.3rem;margin-bottom:.5rem\'>Dziękuję za wiadomość</div><div style=\'color:#7a7060;font-size:.88rem\'>Odpiszę w ciągu 24 godzin i zaproponuję termin bezpłatnej konsultacji.</div></div>'">
+          <h3>Umów bezpłatną konsultację</h3>
+          <p class="form-lead">Wypełnij formularz — odezwę się w ciągu 24h.</p>
+          <div class="form-row">
+            <input type="text" placeholder="Imię i nazwisko" required/>
+            <input type="email" placeholder="Email" required/>
+          </div>
+          <select>
+            <option value="">Interesuje mnie program...</option>
+            <option>Coaching kariery (3 mies.)</option>
+            <option>Coaching przywódczy (6 mies.)</option>
+            <option>Masterclass: Liderka w praktyce</option>
+            <option>Nie wiem jeszcze — chcę porozmawiać</option>
+          </select>
+          <textarea rows="4" placeholder="W czym mogę Ci pomóc? Kilka słów o Twojej sytuacji..."></textarea>
+          <button class="submit-btn" type="submit">Wyślij — pierwszy krok jest bezpłatny →</button>
+          <p class="form-privacy">🔒 Twoje dane są bezpieczne. Nie wysyłam spamu.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="font-family:'Cormorant Garamond',serif;font-weight:600">Anna Dąbrowska Coaching</span>
+  <span>© 2025 · Wszystkie prawa zastrzeżone</span>
+  <span>Built by <a href="index.html" style="color:var(--accent)">RutaHub</a></span>
+</footer>
+
+</body>
+</html>

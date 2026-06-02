@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O mnie — Żaneta Pindel · RutaHub</title>
+  <meta name="description" content="Senior Project Manager z 9+ latami doświadczenia, która teraz buduje produkty cyfrowe dla klientów. Strony, MVP, automatyzacja AI." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0b0f1a;
+      --bg2:     #111827;
+      --bg3:     #1a2233;
+      --accent:  #6c63ff;
+      --accent2: #00d4ff;
+      --green:   #22c55e;
+      --text:    #e8eaf0;
+      --muted:   #8892a4;
+      --border:  rgba(108,99,255,0.2);
+      --card:    rgba(255,255,255,0.03);
+      --radius:  12px;
+      --font:    'Inter', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%; height: 68px;
+      background: rgba(11,15,26,0.85); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .lang-toggle {
+      display: flex; gap: 4px; background: var(--bg3);
+      border-radius: 20px; padding: 4px; border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 4px 14px; border-radius: 16px; font-size: 0.8rem;
+      font-weight: 600; cursor: pointer; border: none; background: transparent;
+      color: var(--muted); transition: all .2s; font-family: var(--font);
+    }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 120px 6% 80px; position: relative; overflow: hidden;
+    }
+    #hero::before, #hero::after {
+      content: ''; position: absolute; border-radius: 50%;
+      filter: blur(90px); opacity: 0.12; pointer-events: none;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    #hero::before { width: 600px; height: 600px; background: var(--accent); top: -150px; left: -150px; }
+    #hero::after  { width: 400px; height: 400px; background: var(--accent2); bottom: -100px; right: -50px; animation-delay: -7s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,30px) scale(1.1); } }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; width: 100%; max-width: 1200px;
+      margin: 0 auto; position: relative; z-index: 1;
+    }
+
+    .hero-text {}
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 20px; padding: 6px 16px;
+      font-size: 0.78rem; color: #a89dff; font-weight: 600;
+      margin-bottom: 1.5rem; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); display: inline-block; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+    h1 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 1.2rem; }
+    .gradient-text { background: linear-gradient(120deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .hero-lead { font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 10px; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer; transition: all .25s; border: none; font-family: var(--font);
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 0 30px rgba(108,99,255,.35); }
+    .btn-primary:hover { background: #7c75ff; box-shadow: 0 0 40px rgba(108,99,255,.5); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Profile card */
+    .profile-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 24px; padding: 2.5rem; position: relative;
+    }
+    .profile-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(108,99,255,0.08), transparent 60%);
+      border-radius: inherit; pointer-events: none;
+    }
+    .avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; margin-bottom: 1.5rem;
+      border: 3px solid rgba(108,99,255,0.3);
+    }
+    .profile-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .profile-title { font-size: 0.88rem; color: var(--accent2); font-weight: 600; margin-bottom: 1.2rem; }
+
+    .profile-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;
+    }
+    .pstat {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px; text-align: center;
+    }
+    .pstat-num { font-size: 1.6rem; font-weight: 800; color: var(--text); line-height: 1; }
+    .pstat-label { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+
+    .profile-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
+    .ptag {
+      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+      border-radius: 6px; padding: 4px 10px; font-size: 0.73rem; color: #a89dff;
+    }
+    .profile-location {
+      display: flex; align-items: center; gap: 6px; font-size: 0.82rem;
+      color: var(--muted); margin-top: 1rem;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 90px 6%; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -0.8px; margin-bottom: 1rem; }
+    .section-lead { font-size: 1rem; color: var(--muted); max-width: 620px; line-height: 1.8; }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── WHY ME ── */
+    #why { background: var(--bg2); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; position: relative; overflow: hidden;
+      transition: all .3s;
+    }
+    .why-card:hover { border-color: rgba(108,99,255,.5); transform: translateY(-3px); background: rgba(108,99,255,.05); }
+    .why-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity:0; transition: opacity .3s; }
+    .why-card:hover::before { opacity:1; }
+    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .6rem; }
+    .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .why-card .proof {
+      margin-top: 1rem; padding: 10px 14px;
+      background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 8px; font-size: 0.8rem; color: var(--green);
+    }
+
+    /* ── STORY ── */
+    #story { }
+    .story-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+    .story-sidebar { position: sticky; top: 100px; }
+    .story-quote {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: 12px;
+      padding: 1.8rem 2rem; font-size: 1.05rem; font-style: italic;
+      color: var(--text); line-height: 1.8; margin-bottom: 1.5rem;
+    }
+    .story-quote cite { display: block; margin-top: .8rem; font-size: 0.82rem; font-style: normal; color: var(--muted); }
+
+    .story-text p { color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; font-size: 0.95rem; }
+    .story-text p strong { color: var(--text); }
+    .story-text h3 { font-size: 1.1rem; font-weight: 700; margin: 2rem 0 .8rem; }
+
+    /* ── TIMELINE ── */
+    #timeline { background: var(--bg2); }
+    .tl { position: relative; padding-left: 2.5rem; }
+    .tl::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--accent), transparent); }
+    .tl-item { position: relative; margin-bottom: 2.5rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -2.5rem; top: 5px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1;
+    }
+    .tl-dot.highlight { background: var(--accent); }
+    .tl-dot.highlight::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+    .tl-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+    .tl-company { font-size: 0.88rem; font-weight: 700; color: var(--accent2); }
+    .tl-period { font-size: 0.78rem; color: var(--muted); background: var(--bg3); border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; }
+    .tl-badge { font-size: 0.72rem; color: #a89dff; background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2); padding: 2px 8px; border-radius: 4px; }
+    .tl-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .tl-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+    .tl-highlights { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .8rem; }
+    .tl-chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font-size: 0.73rem; color: var(--text); }
+
+    /* ── SKILLS ── */
+    #skills { }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skills-block {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.6rem;
+    }
+    .skills-block h3 { font-size: 0.85rem; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+    .skill-list { display: flex; flex-direction: column; gap: 8px; }
+    .skill-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+    .skill-item::before { content: '›'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* ── INDUSTRIES ── */
+    #industries { background: var(--bg2); }
+    .ind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .ind-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem 1rem; text-align: center;
+      transition: all .3s;
+    }
+    .ind-card:hover { border-color: rgba(108,99,255,.5); background: rgba(108,99,255,.05); }
+    .ind-icon { font-size: 1.8rem; margin-bottom: .6rem; }
+    .ind-card span { font-size: 0.82rem; font-weight: 600; }
+
+    /* ── CTA ── */
+    #cta {
+      text-align: center; padding: 100px 6%;
+      background: linear-gradient(135deg, rgba(108,99,255,0.08) 0%, transparent 50%);
+    }
+    #cta h2 { margin-bottom: 1rem; }
+    #cta p { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.75; }
+    #cta .btn-group { justify-content: center; }
+
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 2.5rem 6%; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); }
+    footer span { color: var(--accent); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .profile-card { max-width: 420px; }
+      .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .story-sidebar { position: static; }
+      .nav-links { display: none; }
+    }
+
+    /* ── LANG ── */
+    [data-lang] { display: none; }
+    [data-lang].visible { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">RutaHub</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services"  data-nav="services-link">Usługi</a></li>
+    <li><a href="about.html"           data-nav="about-link" class="active">O mnie</a></li>
+    <li><a href="index.html#cases"     data-nav="cases-link">Case Studies</a></li>
+    <li><a href="index.html#contact"   data-nav="contact-link">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('pl')">PL</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-grid">
+
+    <!-- LEFT: text -->
+    <div class="hero-text">
+      <div data-lang="pl" class="visible">
+        <div class="hero-badge"><span class="dot"></span>Senior Project Manager · Builder</div>
+        <h1>Nie tylko <span class="gradient-text">zarządzam.</span><br/>Też buduję.</h1>
+        <p class="hero-lead">9+ lat doświadczenia w dostarczaniu złożonych produktów cyfrowych. Teraz sama buduję to, czym wcześniej zarządzałam zespołami. Dla moich klientów oznacza to prostsze projekty, mniej chaosu i więcej wartości.</p>
+        <div class="btn-group">
+          <a href="index.html#contact" class="btn btn-primary">✉ Porozmawiajmy</a>
+          <a href="#why"               class="btn btn-outline">Dlaczego ja? →</a>
+        </div>
+      </div>
+      <div data-lang="en">
+        <div class="hero-badge"><span class="dot"></span>Senior Project Manager · Builder</div>
+        <h1>I don't just <span class="gradient-text">manage.</span><br/>I build.</h1>
+        <p class="hero-lead">9+ years delivering complex digital products. Now I build what I used to manage teams to deliver. For my clients, that means cleaner projects, less chaos, and more value.</p>
+        <div class="btn-group">
+          <a href="index.html#contact" class="btn btn-primary">✉ Let's talk</a>
+          <a href="#why"               class="btn btn-outline">Why me? →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: profile card -->
+    <div>
+      <div class="profile-card">
+        <div class="avatar">👩‍💻</div>
+        <div class="profile-name">Żaneta Pindel</div>
+        <div class="profile-title">Senior PM · Web & AI Builder · Founder</div>
+
+        <div class="profile-stats">
+          <div class="pstat">
+            <div class="pstat-num">9+</div>
+            <div class="pstat-label" data-lang="pl" style="display:block;">lat doświadczenia</div>
+            <div class="pstat-label" data-lang="en">years of experience</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-num">40</div>
+            <div class="pstat-label" data-lang="pl" style="display:block;">os. największy team</div>
+            <div class="pstat-label" data-lang="en">people, largest team</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-num">20+</div>
+            <div class="pstat-label" data-lang="pl" style="display:block;">produktów dostarczonych</div>
+            <div class="pstat-label" data-lang="en">products delivered</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-num">C1</div>
+            <div class="pstat-label" data-lang="pl" style="display:block;">angielski</div>
+            <div class="pstat-label" data-lang="en">English level</div>
+          </div>
+        </div>
+
+        <div class="profile-tags">
+          <span class="ptag">Kraków, PL</span>
+          <span class="ptag">Remote</span>
+          <span class="ptag">EN / PL / UA</span>
+        </div>
+
+        <div class="profile-location" style="margin-top:1rem;">
+          <span style="color:var(--green);">●</span>
+          <span data-lang="pl" class="visible" style="font-size:.82rem;color:var(--muted);">Dostępna do nowych projektów</span>
+          <span data-lang="en" style="font-size:.82rem;color:var(--muted);">Open to new projects</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── DLACZEGO JA ─────────────────────────────────────────────── -->
+<section id="why">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">
+        <span data-lang="pl" class="visible">Dlaczego ja</span>
+        <span data-lang="en">Why me</span>
+      </div>
+      <h2>
+        <span data-lang="pl" class="visible">Czego nie dostaniesz od "zwykłego" freelancera</span>
+        <span data-lang="en">What you won't get from a regular freelancer</span>
+      </h2>
+      <p class="section-lead">
+        <span data-lang="pl" class="visible">Większość developerów albo umie budować, albo zarządzać. Ja robię obie rzeczy — i to zmienia sposób, w jaki prowadzimy Twój projekt.</span>
+        <span data-lang="en">Most developers can either build or manage. I do both — and that changes everything about how your project runs.</span>
+      </p>
+    </div>
+
+    <div class="why-grid">
+
+      <!-- 1 -->
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <div data-lang="pl" class="visible">
+          <h3>PM, który nie marnuje Twojego budżetu</h3>
+          <p>9 lat w software house'ach nauczyło mnie, jak bardzo projekty potrafią wyjść poza scope i budżet — i dlaczego tak się dzieje. Wiem, co wymaga wyceny, co można uprościć i co jest zbędnym kosztem.</p>
+          <div class="proof">✓ Wycena na podstawie realnego doświadczenia PM, nie zgadywania</div>
+        </div>
+        <div data-lang="en">
+          <h3>A PM who won't burn your budget</h3>
+          <p>9 years in software houses taught me exactly how projects blow up in scope and cost — and why. I know what needs pricing, what can be simplified, and what is pure overhead.</p>
+          <div class="proof">✓ Estimates based on real PM experience, not guesswork</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="why-card">
+        <div class="why-icon">🤖</div>
+        <div data-lang="pl" class="visible">
+          <h3>AI nie jest dla mnie modnym hasłem</h3>
+          <p>Samodzielnie zbudowałam i uruchomiłam działający produkt (durnostojki.pl) używając AI do kodowania — bez zespołu developerów, po godzinach pracy. Stack: Next.js, Supabase, OpenAI API, Vercel. Projekt generuje przychód od pierwszego dnia.</p>
+          <div class="proof">✓ Dowód: działający produkt online, nie prezentacja PowerPoint</div>
+        </div>
+        <div data-lang="en">
+          <h3>AI isn't just a buzzword for me</h3>
+          <p>I independently built and launched a live product (durnostojki.pl) using AI-assisted coding — no dev team, after hours alongside a full-time job. Stack: Next.js, Supabase, OpenAI API, Vercel. Revenue-generating from day one.</p>
+          <div class="proof">✓ Proof: live product online, not a PowerPoint slide</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="why-card">
+        <div class="why-icon">🌍</div>
+        <div data-lang="pl" class="visible">
+          <h3>Doświadczenie z klientami międzynarodowymi</h3>
+          <p>Pracowałam przy projektach dla klientów z Wielkiej Brytanii (iGaming, UKGC/MGA compliance), Holandii (HRTech) i USA (Logistics). Angielski na poziomie C1, przyzwyczajona do pracy w strefach czasowych.</p>
+          <div class="proof">✓ Klienci z UK, NL, USA — obsługa po angielsku bez problemu</div>
+        </div>
+        <div data-lang="en">
+          <h3>International client experience</h3>
+          <p>I've delivered projects for clients from the UK (iGaming, UKGC/MGA compliance), the Netherlands (HRTech), and the USA (Logistics). English C1, comfortable working across time zones.</p>
+          <div class="proof">✓ UK, NL, US clients served — no language barrier</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <div data-lang="pl" class="visible">
+          <h3>Od discovery do launchu — sama na całej drodze</h3>
+          <p>Prowadziłam warsztaty produktowe, pisałam white papers, negocjowałam kontrakty, zarządzałam 40-osobowymi teamami i byłam twarzą firmy na konferencjach. Wiem, jak wygląda projekt z każdej strony stołu.</p>
+          <div class="proof">✓ Product discovery · Wyceny · Delivery · Prelegent na konferencjach</div>
+        </div>
+        <div data-lang="en">
+          <h3>From discovery to launch — same person throughout</h3>
+          <p>I've run product workshops, written white papers, negotiated contracts, managed 40-person teams, and represented companies at conferences. I know how a project looks from every side of the table.</p>
+          <div class="proof">✓ Discovery · Estimation · Delivery · Conference speaker</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MOJA HISTORIA ───────────────────────────────────────────── -->
+<section id="story">
+  <div class="container">
+    <div class="story-grid">
+
+      <div class="story-sidebar">
+        <div class="section-tag">
+          <span data-lang="pl" class="visible">Moja historia</span>
+          <span data-lang="en">My story</span>
+        </div>
+        <h2>
+          <span data-lang="pl" class="visible">Z sali konferencyjnej na własny produkt</span>
+          <span data-lang="en">From the boardroom to my own product</span>
+        </h2>
+
+        <!-- PL quote -->
+        <div data-lang="pl" class="visible">
+          <div class="story-quote">
+            "Przez lata zarządzałam budowaniem produktów dla innych. W pewnym momencie postanowiłam sprawdzić, czy sama potrafię to zrobić — bez teamu, z AI jako kolegą z pracy."
+            <cite>— Żaneta Pindel</cite>
+          </div>
+        </div>
+
+        <!-- EN quote -->
+        <div data-lang="en">
+          <div class="story-quote">
+            "For years I managed the building of products for others. At some point I decided to test myself — could I do it alone, with AI as my coworker?"
+            <cite>— Żaneta Pindel</cite>
+          </div>
+        </div>
+
+        <div class="btn-group" style="margin-top:1.5rem;">
+          <a href="index.html#contact" class="btn btn-outline" style="font-size:.85rem;">
+            <span data-lang="pl" class="visible">✉ Napisz do mnie</span>
+            <span data-lang="en">✉ Get in touch</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="story-text">
+
+        <!-- PL -->
+        <div data-lang="pl" class="visible">
+          <p>Zaczęłam jako <strong>Product Owner w Leanpassion</strong> — budowałam aplikacje mobilne dla firm produkcyjnych, uczyłam się, jak dobry produkt wynika z dobrego zrozumienia problemu. Stamtąd trafiłam do <strong>Onwelo</strong>, gdzie jako PO prowadziłam Hello Astra od roadmapy po wejście na rynek.</p>
+
+          <p>Przez ponad 4 lata w <strong>Softnauts</strong> dojrzałam jako Senior Project Manager — zarządzałam jednocześnie wieloma projektami, prowadziłam 40-osobowy zespół produkcyjny, uczestniczyłam w pre-sales i reprezentowałam firmę jako prelegent. Platforma EdTech, którą nadzorowałam, dobiła do 10 000 aktywnych użytkowników.</p>
+
+          <p>Równolegle dołączyłam do <strong>Tokenomia.pro</strong> — early-stage startupu Web3 — jako Head of Delivery. Budowałam procesy od zera: onboarding klientów, workflow projektu, procedury release'owe. Zarządzałam 28-osobowym teamem przy kilku jednoczesnych projektach kryptowalutowych. To było jak mały własny biznes w ramach startupu.</p>
+
+          <p>W <strong>CrustLab</strong> zajmuję się projektami iGaming dla klientów z UK i Europy — compliance, certyfikacja gier, backendy SaaS. To środowisko o bardzo wysokich wymaganiach regulacyjnych, które nauczyło mnie precyzji.</p>
+
+          <h3>Przełomowy moment: własny produkt</h3>
+          <p>W 2026 roku zbudowałam <strong>durnostojki.pl</strong> — portal afiliacyjny w niszy dom i ogród — od zera, sama, po godzinach, przez 4 miesiące. Używałam AI do pisania kodu (Next.js 15, React, TypeScript, Supabase, OpenAI API). Produkt generuje przychód od momentu uruchomienia.</p>
+          <p>To doświadczenie dało mi coś, czego nie dało 9 lat zarządzania projektami: <strong>empatię dla klienta-foundera</strong>. Wiem, jak to jest mieć ograniczony budżet, bać się, że coś nie zadziała, i cieszyć się z pierwszej sprzedaży.</p>
+          <p>RutaHub to naturalna konsekwencja tej drogi — usługi, które łączą PM-owe podejście do projektu z umiejętnością samodzielnego budowania.</p>
+        </div>
+
+        <!-- EN -->
+        <div data-lang="en">
+          <p>I started as a <strong>Product Owner at Leanpassion</strong> — building mobile apps for manufacturing companies, learning how good products come from good problem understanding. From there I moved to <strong>Onwelo</strong>, where as PO I took Hello Astra from roadmap to market launch.</p>
+
+          <p>Over 4+ years at <strong>Softnauts</strong> I grew into a Senior Project Manager — running multiple concurrent projects, leading a 40-person production team, driving pre-sales, and representing the company as a speaker. The EdTech platform I oversaw scaled to 10,000+ active users.</p>
+
+          <p>In parallel I joined <strong>Tokenomia.pro</strong> — an early-stage Web3 startup — as Head of Delivery. I built processes from scratch: client onboarding, project workflows, release procedures. I managed a 28-person team across concurrent crypto projects. It felt like running a small business inside a startup.</p>
+
+          <p>At <strong>CrustLab</strong> I work on iGaming projects for UK and European clients — compliance, game certification, SaaS backends. It's a high-stakes regulatory environment that has sharpened my precision.</p>
+
+          <h3>The turning point: building my own product</h3>
+          <p>In 2026 I built <strong>durnostojki.pl</strong> — an affiliate portal in the home & garden niche — from scratch, alone, after hours, over 4 months. I used AI to write code (Next.js 15, React, TypeScript, Supabase, OpenAI API). It generates revenue from day one.</p>
+          <p>That experience gave me something 9 years of project management couldn't: <strong>empathy for the founder-client</strong>. I know what it's like to have a tight budget, fear that something won't work, and feel the rush of that first sale.</p>
+          <p>RutaHub is the natural result of this journey — services that combine a PM's approach to projects with the ability to build independently.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ───────────────────────────────────────────────── -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">
+        <span data-lang="pl" class="visible">Doświadczenie</span>
+        <span data-lang="en">Experience</span>
+      </div>
+      <h2>
+        <span data-lang="pl" class="visible">9 lat, 6 firm, 20+ produktów</span>
+        <span data-lang="en">9 years, 6 companies, 20+ products</span>
+      </h2>
+    </div>
+
+    <div style="max-width: 780px;">
+      <div class="tl">
+
+        <!-- CrustLab -->
+        <div class="tl-item">
+          <div class="tl-dot highlight"><div></div></div>
+          <div class="tl-meta">
+            <span class="tl-company">CrustLab</span>
+            <span class="tl-period">2024 – teraz</span>
+            <span class="tl-badge">
+              <span data-lang="pl" class="visible">Senior PM</span>
+              <span data-lang="en">Senior PM</span>
+            </span>
+          </div>
+          <h3>
+            <span data-lang="pl" class="visible">Projekty iGaming dla klientów z UK i Europy</span>
+            <span data-lang="en">iGaming projects for UK and European clients</span>
+          </h3>
+          <p>
+            <span data-lang="pl" class="visible">3 jednoczesne projekty: frontend casino platform (UKGC/MGA compliance), backend RGS (SaaS, AWS, GLI-19), certyfikacja gier. Zespoły 5–12 osób.</span>
+            <span data-lang="en">3 concurrent projects: frontend casino platform (UKGC/MGA compliance), backend RGS (SaaS, AWS, GLI-19), game certification. Teams of 5–12.</span>
+          </p>
+          <div class="tl-highlights"><span class="tl-chip">iGaming</span><span class="tl-chip">Compliance</span><span class="tl-chip">SaaS Backend</span></div>
+        </div>
+
+        <!-- durnostojki -->
+        <div class="tl-item">
+          <div class="tl-dot highlight"><div></div></div>
+          <div class="tl-meta">
+            <span class="tl-company">durnostojki.pl</span>
+            <span class="tl-period">2026 – teraz</span>
+            <span class="tl-badge">
+              <span data-lang="pl" class="visible">Founder · Solo build</span>
+              <span data-lang="en">Founder · Solo build</span>
+            </span>
+          </div>
+          <h3>
+            <span data-lang="pl" class="visible">Własny produkt zbudowany z AI</span>
+            <span data-lang="en">Own product built with AI</span>
+          </h3>
+          <p>
+            <span data-lang="pl" class="visible">Portal afiliacyjny zbudowany samodzielnie po godzinach w 4 miesiące. Pełny stack z AI-assisted coding. Generuje przychód.</span>
+            <span data-lang="en">Affiliate portal built independently after hours in 4 months. Full stack via AI-assisted coding. Generating revenue since launch.</span>
+          </p>
+          <div class="tl-highlights"><span class="tl-chip">Next.js 15</span><span class="tl-chip">React 19</span><span class="tl-chip">Supabase</span><span class="tl-chip">OpenAI API</span><span class="tl-chip">Vercel</span></div>
+        </div>
+
+        <!-- Softnauts -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-company">Softnauts</span>
+            <span class="tl-period">2020 – 2024</span>
+            <span class="tl-badge">Senior PM</span>
+          </div>
+          <h3>
+            <span data-lang="pl" class="visible">EdTech, HRTech, Logistics — 40-osobowy team</span>
+            <span data-lang="en">EdTech, HRTech, Logistics — 40-person team</span>
+          </h3>
+          <p>
+            <span data-lang="pl" class="visible">Platforma edukacyjna (10 000+ użytkowników), ATS dla holenderskiej agencji rekrutacyjnej, aplikacja dla kierowców USA, aplikacje 4 uczelni. Kierowanie całym 40-osobowym działem produkcji.</span>
+            <span data-lang="en">Educational platform (10,000+ users), ATS for a Dutch recruitment agency, app for US drivers, apps for 4 universities. Leading a 40-person production department.</span>
+          </p>
+          <div class="tl-highlights"><span class="tl-chip">EdTech</span><span class="tl-chip">HRTech</span><span class="tl-chip">Logistics</span></div>
+        </div>
+
+        <!-- Tokenomia.pro -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-company">Tokenomia.pro</span>
+            <span class="tl-period">2022 – 2023</span>
+            <span class="tl-badge">Head of Delivery</span>
+          </div>
+          <h3>
+            <span data-lang="pl" class="visible">Startup Web3 — budowanie procesów od zera</span>
+            <span data-lang="en">Web3 startup — building processes from scratch</span>
+          </h3>
+          <p>
+            <span data-lang="pl" class="visible">28-osobowy team, projekty crypto (NFT, smart contracts, mobile app z mechanizmem nagradzania). Całość procesów delivery zbudowana od podstaw.</span>
+            <span data-lang="en">28-person team, crypto projects (NFT, smart contracts, rewards-mechanism mobile app). Full delivery process built from zero.</span>
+          </p>
+          <div class="tl-highlights"><span class="tl-chip">Web3</span><span class="tl-chip">NFT</span><span class="tl-chip">Smart Contracts</span></div>
+        </div>
+
+        <!-- Onwelo -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-company">Onwelo</span>
+            <span class="tl-period">2019 – 2022</span>
+            <span class="tl-badge">Product Owner</span>
+          </div>
+          <h3>Hello Astra</h3>
+          <p>
+            <span data-lang="pl" class="visible">Definicja wizji produktu, roadmap, backlog, strategia wejścia na rynek. Scrum, odkrycie produktowe, współpraca z działami sprzedaży i marketingu.</span>
+            <span data-lang="en">Product vision, roadmap, backlog, go-to-market strategy. Scrum, product discovery, collaboration with Sales and Marketing.</span>
+          </p>
+        </div>
+
+        <!-- Leanpassion -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">
+            <span class="tl-company">Leanpassion</span>
+            <span class="tl-period">2017 – 2019</span>
+            <span class="tl-badge">Product Owner</span>
+          </div>
+          <h3>
+            <span data-lang="pl" class="visible">Aplikacje mobilne dla przemysłu</span>
+            <span data-lang="en">Mobile apps for industry</span>
+          </h3>
+          <p>
+            <span data-lang="pl" class="visible">Sherlock Waste, Leanovatica, Keepy Life — narzędzia do optymalizacji procesów i angażowania pracowników w firmach produkcyjnych.</span>
+            <span data-lang="en">Sherlock Waste, Leanovatica, Keepy Life — process optimisation and employee engagement tools for manufacturing companies.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">
+        <span data-lang="pl" class="visible">Narzędzia i umiejętności</span>
+        <span data-lang="en">Skills & tools</span>
+      </div>
+      <h2>
+        <span data-lang="pl" class="visible">Czym pracuję na co dzień</span>
+        <span data-lang="en">What I work with every day</span>
+      </h2>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skills-block">
+        <h3>
+          <span data-lang="pl" class="visible">🎯 Project Management</span>
+          <span data-lang="en">🎯 Project Management</span>
+        </h3>
+        <div class="skill-list">
+          <div class="skill-item">Agile / Scrum / Kanban</div>
+          <div class="skill-item">
+            <span data-lang="pl" class="visible">Zarządzanie ryzykiem</span>
+            <span data-lang="en">Risk management</span>
+          </div>
+          <div class="skill-item">
+            <span data-lang="pl" class="visible">Product discovery</span>
+            <span data-lang="en">Product discovery</span>
+          </div>
+          <div class="skill-item">
+            <span data-lang="pl" class="visible">Wyceny i pre-sales</span>
+            <span data-lang="en">Estimation & pre-sales</span>
+          </div>
+          <div class="skill-item">
+            <span data-lang="pl" class="visible">Negocjacje kontraktów</span>
+            <span data-lang="en">Contract negotiation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-block">
+        <h3>🤖 AI & Automation</h3>
+        <div class="skill-list">
+          <div class="skill-item">OpenAI API (GPT-4)</div>
+          <div class="skill-item">Claude (Anthropic)</div>
+          <div class="skill-item">Make.com / n8n / Zapier</div>
+          <div class="skill-item">
+            <span data-lang="pl" class="visible">AI-assisted vibe coding</span>
+            <span data-lang="en">AI-assisted vibe coding</span>
+          </div>
+          <div class="skill-item">
+            <span data-lang="pl" class="visible">Automatyzacja treści</span>
+            <span data-lang="en">Content automation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-block">
+        <h3>💻 Tech</h3>
+        <div class="skill-list">
+          <div class="skill-item">Next.js / React / TypeScript</div>
+          <div class="skill-item">Tailwind CSS</div>
+          <div class="skill-item">Supabase / Directus</div>
+          <div class="skill-item">Vercel / GitHub / OVH</div>
+          <div class="skill-item">Webflow / WordPress</div>
+        </div>
+      </div>
+
+      <div class="skills-block">
+        <h3>🛠 PM Tools</h3>
+        <div class="skill-list">
+          <div class="skill-item">Jira · Asana · Trello</div>
+          <div class="skill-item">Notion · Confluence · Miro</div>
+          <div class="skill-item">Figma · Pipedrive</div>
+          <div class="skill-item">Monday.com</div>
+          <div class="skill-item">Clockify · Toggl</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ─────────────────────────────────────────────── -->
+<section id="industries">
+  <div class="container">
+    <div class="section-tag">
+      <span data-lang="pl" class="visible">Branże</span>
+      <span data-lang="en">Industries</span>
+    </div>
+    <h2>
+      <span data-lang="pl" class="visible">Projekty w różnych branżach</span>
+      <span data-lang="en">Projects across industries</span>
+    </h2>
+    <div class="ind-grid">
+      <div class="ind-card"><div class="ind-icon">🎓</div><span>EdTech</span></div>
+      <div class="ind-card"><div class="ind-icon">👥</div><span>HRTech</span></div>
+      <div class="ind-card"><div class="ind-icon">🎰</div><span>iGaming</span></div>
+      <div class="ind-card"><div class="ind-icon">🔗</div><span>Web3 / Crypto</span></div>
+      <div class="ind-card"><div class="ind-icon">🚚</div><span>Logistics</span></div>
+      <div class="ind-card"><div class="ind-icon">⚡</div><span>Energy (ORLEN)</span></div>
+      <div class="ind-card"><div class="ind-icon">✈️</div><span>Travel (TUI)</span></div>
+      <div class="ind-card"><div class="ind-icon">🏫</div><span>Education / Uni</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────── -->
+<section id="cta">
+  <div class="section-tag">
+    <span data-lang="pl" class="visible">Zacznijmy</span>
+    <span data-lang="en">Let's start</span>
+  </div>
+  <div data-lang="pl" class="visible">
+    <h2>Masz projekt? Porozmawiajmy.</h2>
+    <p>Bezpłatna konsultacja 30 minut. Opowiedz mi o swoim pomyśle — a ja powiem Ci, co jest realne, ile to zajmie i ile kosztuje.</p>
+  </div>
+  <div data-lang="en">
+    <h2>Got a project? Let's talk.</h2>
+    <p>Free 30-minute consultation. Tell me about your idea — I'll tell you what's realistic, how long it'll take, and what it'll cost.</p>
+  </div>
+  <div class="btn-group">
+    <a href="index.html#contact" class="btn btn-primary">
+      <span data-lang="pl" class="visible">✉ Napisz do mnie</span>
+      <span data-lang="en">✉ Write to me</span>
+    </a>
+    <a href="index.html#services" class="btn btn-outline">
+      <span data-lang="pl" class="visible">Moje usługi →</span>
+      <span data-lang="en">My services →</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>RutaHub</span> · Żaneta Pindel ·
+    <span data-lang="pl" class="visible">Wszelkie prawa zastrzeżone</span>
+    <span data-lang="en">All rights reserved</span>
+  </p>
+</footer>
+
+<script>
+  let currentLang = 'pl';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      const show = el.dataset.lang === lang;
+      el.classList.toggle('visible', show);
+      if (el.tagName === 'SPAN' || el.tagName === 'CITE') {
+        el.style.display = show ? 'inline' : 'none';
+      } else {
+        el.style.display = show ? 'block' : 'none';
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    // nav text
+    const navMap = {
+      'services-link': { pl: 'Usługi',     en: 'Services'    },
+      'about-link':    { pl: 'O mnie',     en: 'About'       },
+      'cases-link':    { pl: 'Realizacje', en: 'Case Studies'},
+      'contact-link':  { pl: 'Kontakt',    en: 'Contact'     },
+    };
+    document.querySelectorAll('[data-nav]').forEach(el => {
+      const key = el.dataset.nav;
+      if (navMap[key]) el.textContent = navMap[key][lang];
+    });
+    document.documentElement.lang = lang;
+  }
+
+  setLang('pl');
+</script>
+</body>
+</html>
