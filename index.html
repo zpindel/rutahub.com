@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RutaHub — Strony, MVP, Automatyzacja AI</title>
-  <meta name="description" content="RutaHub — tworzenie stron internetowych, MVP, prostych systemów i automatyzacji AI." />
+  <title>RutaHub — Strony, MVP, automatyzacje AI i wsparcie delivery</title>
+  <meta name="description" content="RutaHub — strony, MVP, automatyzacje AI i wsparcie delivery dla firm, które chcą dowozić szybciej. PM-owe podejście, AI-assisted delivery, lekki model współpracy." />
   <style>
     /* ── Reset & base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -551,6 +551,172 @@
       transition: all .3s; pointer-events: none; z-index: 999;
     }
     #toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── NEW SECTIONS ─────────────────────────────────────────── */
+    .highlights-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 3rem 6%;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .highlight-item { text-align: center; }
+    .highlight-item h3 {
+      font-size: 0.95rem; font-weight: 700; margin-bottom: .5rem;
+      color: var(--text);
+    }
+    .highlight-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .audience-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: all .3s;
+    }
+    .audience-card:hover {
+      border-color: rgba(108,99,255,0.5);
+      transform: translateY(-4px);
+      background: rgba(108,99,255,0.06);
+    }
+    .audience-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .8rem; }
+    .audience-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: .8rem; }
+    .audience-card p:last-child { margin-bottom: 0; }
+
+    .service-block {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .service-block:last-child { margin-bottom: 0; }
+    .service-block h3 {
+      font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+    }
+    .service-block > p {
+      color: var(--muted); font-size: 0.92rem; line-height: 1.75;
+      margin-bottom: .8rem;
+    }
+    .service-block .subsection-title {
+      font-size: 0.85rem; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin: 1.5rem 0 .8rem;
+    }
+    ul.content-list {
+      list-style: none; display: flex; flex-direction: column; gap: .5rem;
+      margin-bottom: 1rem;
+    }
+    ul.content-list li {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.6;
+      padding-left: 1.2rem; position: relative;
+    }
+    ul.content-list li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--accent); font-size: 0.8rem;
+    }
+    .for-who {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+      padding: 1rem 1.2rem; background: rgba(108,99,255,0.06);
+      border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
+    }
+    .for-who strong { color: var(--text); }
+
+    .why-grid, .when-grid, .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .coop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .why-card, .when-card, .coop-card, .model-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: all .3s;
+    }
+    .why-card:hover, .when-card:hover, .coop-card:hover, .model-card:hover {
+      border-color: rgba(108,99,255,0.5);
+      transform: translateY(-4px);
+    }
+    .why-card h3, .when-card h3, .coop-card h3, .model-card h3 {
+      font-size: 1.05rem; font-weight: 700; margin-bottom: .8rem;
+    }
+    .why-card p, .when-card p, .model-card p {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: .6rem;
+    }
+    .why-card p:last-child, .when-card p:last-child, .model-card p:last-child { margin-bottom: 0; }
+    .coop-card ul.content-list { margin-top: .5rem; margin-bottom: 0; }
+
+    .project-types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .project-type-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem;
+      transition: all .3s;
+    }
+    .project-type-card:hover {
+      border-color: rgba(108,99,255,0.5);
+      transform: translateY(-4px);
+    }
+    .project-type-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .6rem; }
+    .project-type-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+    .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: .75rem; }
+    .faq-list details {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color .2s;
+    }
+    .faq-list details[open] { border-color: rgba(108,99,255,0.4); }
+    .faq-list summary {
+      padding: 1.2rem 1.5rem; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; list-style: none; display: flex;
+      align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: '+'; font-size: 1.2rem; color: var(--accent);
+      flex-shrink: 0; transition: transform .2s;
+    }
+    .faq-list details[open] summary::after { transform: rotate(45deg); }
+    .faq-list .faq-answer {
+      padding: 0 1.5rem 1.2rem;
+      font-size: 0.88rem; color: var(--muted); line-height: 1.75;
+    }
+    .faq-list .faq-answer p { margin-bottom: .6rem; }
+    .faq-list .faq-answer p:last-child { margin-bottom: 0; }
+
+    .contact-bullets {
+      list-style: none; display: flex; flex-direction: column; gap: .5rem;
+      margin-top: 1rem;
+    }
+    .contact-bullets li {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+      padding-left: 1.2rem; position: relative;
+    }
+    .contact-bullets li::before {
+      content: '•'; position: absolute; left: 0; color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .highlights-bar { grid-template-columns: 1fr 1fr; padding: 2rem 5%; }
+      .coop-grid { grid-template-columns: 1fr; }
+      .service-block { padding: 1.8rem; }
+    }
+    @media (max-width: 420px) {
+      .highlights-bar { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -561,9 +727,10 @@
 
   <ul class="nav-links">
     <li><a href="#services"   data-nav="services-link">Usługi</a></li>
-    <li><a href="#why-me"    data-nav="whyme-link">Dlaczego ja?</a></li>
+    <li><a href="#audience"   data-nav="audience-link">Dla kogo</a></li>
+    <li><a href="#cases"      data-nav="cases-link">Realizacje</a></li>
+    <li><a href="#faq"        data-nav="faq-link">FAQ</a></li>
     <li><a href="about.html"  data-nav="about-link">O mnie</a></li>
-    <li><a href="#cases"      data-nav="cases-link">Case Studies</a></li>
     <li><a href="#contact"    data-nav="contact-link">Kontakt</a></li>
   </ul>
 
@@ -580,9 +747,10 @@
 
 <div class="mobile-menu" id="mobile-menu">
   <a href="#services"  onclick="closeMenu()" data-mnav="services-link">Usługi</a>
-  <a href="#why-me"    onclick="closeMenu()" data-mnav="whyme-link">Dlaczego ja?</a>
+  <a href="#audience"  onclick="closeMenu()" data-mnav="audience-link">Dla kogo</a>
+  <a href="#cases"     onclick="closeMenu()" data-mnav="cases-link">Realizacje</a>
+  <a href="#faq"       onclick="closeMenu()" data-mnav="faq-link">FAQ</a>
   <a href="about.html" onclick="closeMenu()" data-mnav="about-link">O mnie</a>
-  <a href="#cases"     onclick="closeMenu()" data-mnav="cases-link">Case Studies</a>
   <a href="#contact"   onclick="closeMenu()" data-mnav="contact-link">Kontakt</a>
 </div>
 
@@ -594,300 +762,328 @@
     <!-- PL -->
     <div data-lang="pl" class="visible">
       <div class="hero-badge"><span></span>Dostępna do nowych projektów</div>
-      <h1>Buduję <span class="gradient-text">cyfrowe produkty</span>,<br/>które naprawdę działają</h1>
-      <p class="hero-sub">Pomagam startupom i małym firmom usługowym budować strony, MVP i automatyzacje AI. Szybko, bez chaosu — z PM-owym podejściem do każdego projektu. Jednorazowo lub jako stały partner techniczny.</p>
+      <h1>Strony, MVP, automatyzacje AI i wsparcie delivery dla firm, które chcą <span class="gradient-text">dowozić szybciej</span></h1>
+      <p class="hero-sub">Pomagam małym firmom, founderom i zespołom IT budować praktyczne rozwiązania cyfrowe: strony internetowe, MVP, proste systemy, automatyzacje AI oraz uporządkowane procesy projektowe.</p>
+      <p class="hero-sub" style="margin-top:-1.5rem;">Łączę doświadczenie Project Managerki z praktycznym budowaniem produktów. Dzięki temu mogę pomóc Ci nie tylko „zrobić stronę” albo „zbudować aplikację”, ale też dobrze przemyśleć zakres, priorytety, ryzyka, budżet i sposób dowiezienia projektu.</p>
       <div class="btn-group">
-        <a href="#contact" class="btn btn-primary">✉ Napisz do mnie</a>
-        <a href="#cases"   class="btn btn-outline">Realizacje →</a>
+        <a href="#contact" class="btn btn-primary">Porozmawiajmy o projekcie</a>
+        <a href="#services" class="btn btn-outline">Zobacz, w czym mogę pomóc →</a>
       </div>
     </div>
 
     <!-- EN -->
     <div data-lang="en">
       <div class="hero-badge"><span></span>Available for new projects</div>
-      <h1>I build <span class="gradient-text">digital products</span><br/>that actually work</h1>
-      <p class="hero-sub">I help startups and small service businesses build websites, MVPs and AI automations. Fast, without chaos — with a PM's approach to every project. One-off or as your ongoing tech partner.</p>
+      <h1>Websites, MVPs, AI automations and delivery support for teams that want to <span class="gradient-text">ship faster</span></h1>
+      <p class="hero-sub">I help small businesses, founders and IT teams build practical digital solutions: websites, MVPs, simple systems, AI automations and structured project processes.</p>
+      <p class="hero-sub" style="margin-top:-1.5rem;">I combine Project Management experience with hands-on product building — so you get more than a website or app: clear scope, priorities, risks, budget and a realistic delivery plan.</p>
       <div class="btn-group">
-        <a href="#contact" class="btn btn-primary">✉ Get in touch</a>
-        <a href="#cases"   class="btn btn-outline">See my work →</a>
+        <a href="#contact" class="btn btn-primary">Let's talk about your project</a>
+        <a href="#services" class="btn btn-outline">See how I can help →</a>
       </div>
     </div>
 
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">20+</div>
-        <div class="stat-label" data-lang="pl" style="display:block;">projektów</div>
-        <div class="stat-label" data-lang="en">projects</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">3+</div>
-        <div class="stat-label" data-lang="pl" style="display:block;">lat doświadczenia</div>
-        <div class="stat-label" data-lang="en">years of experience</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">48h</div>
-        <div class="stat-label" data-lang="pl" style="display:block;">czas odpowiedzi</div>
-        <div class="stat-label" data-lang="en">response time</div>
-      </div>
-    </div>
+  </div>
+</section>
 
+<!-- ── HIGHLIGHTS ───────────────────────────────────────────────── -->
+<div id="highlights" class="highlights-bar">
+  <div class="highlight-item">
+    <h3>PM-owe podejście</h3>
+    <p>Myślę o celu, zakresie, ryzykach i budżecie — nie tylko o wykonaniu tasków.</p>
+  </div>
+  <div class="highlight-item">
+    <h3>AI-assisted delivery</h3>
+    <p>Korzystam z AI, żeby szybciej prototypować, analizować, pisać, porządkować i automatyzować.</p>
+  </div>
+  <div class="highlight-item">
+    <h3>Lekki model współpracy</h3>
+    <p>Bez dużego zespołu, długiego onboardingu i niepotrzebnej złożoności.</p>
+  </div>
+  <div class="highlight-item">
+    <h3>Dla biznesu i IT</h3>
+    <p>Wspieram zarówno małe firmy i founderów, jak i software house'y oraz zespoły technologiczne.</p>
+  </div>
+</div>
+
+<!-- ── AUDIENCE ─────────────────────────────────────────────────── -->
+<section id="audience">
+  <div class="section-header">
+    <div class="section-tag">Dla kogo</div>
+    <h2>Dla kogo jest RutaHub?</h2>
+  </div>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <h3>Dla małych firm usługowych</h3>
+      <p>Jeżeli prowadzisz firmę i potrzebujesz strony, prostego systemu, automatyzacji albo lepszego sposobu obsługi zapytań — pomagam przełożyć potrzeby biznesowe na konkretne, działające rozwiązanie.</p>
+      <p>Możemy zacząć od strony internetowej, formularza, landing page'a, prostego CRM-u, automatyzacji maili, generowania treści albo uporządkowania procesu sprzedażowego.</p>
+    </div>
+    <div class="audience-card">
+      <h3>Dla founderów i startupów</h3>
+      <p>Jeżeli masz pomysł na produkt, ale nie chcesz od razu budować dużego zespołu technologicznego — pomagam szybko przejść od koncepcji do pierwszej działającej wersji.</p>
+      <p>Mogę wesprzeć Cię w zaplanowaniu zakresu MVP, przygotowaniu backlogu, stworzeniu prototypu, landing page'a, wersji demo albo pierwszej wersji produktu do walidacji z użytkownikami.</p>
+    </div>
+    <div class="audience-card">
+      <h3>Dla firm IT, software house'ów i agencji digital</h3>
+      <p>Jeżeli Twój zespół ma za dużo pracy, a zatrudnienie kolejnego PM-a, analityka albo developera na etat nie ma teraz sensu — mogę wejść jako elastyczne wsparcie projektowe, delivery lub produktowe.</p>
+      <p>Pomagam w zadaniach, które trzeba dowieźć, ale nie zawsze wymagają pełnego etatu: uporządkowanie backlogu, przygotowanie dokumentacji, wsparcie komunikacji z klientem, koordynacja projektu, discovery, analiza zakresu, raportowanie, przygotowanie ofert, prototypowanie oraz praca z AI.</p>
+    </div>
   </div>
 </section>
 
 <!-- ── SERVICES ─────────────────────────────────────────────────── -->
-<section id="services">
+<section id="services" style="background:var(--bg2);">
 
   <div class="section-header">
-    <div class="section-tag">
-      <span data-lang="pl" class="visible">Usługi</span>
-      <span data-lang="en">Services</span>
-    </div>
-    <h2>
-      <span data-lang="pl" class="visible">Co mogę dla Ciebie zrobić?</span>
-      <span data-lang="en">What I can do for you</span>
-    </h2>
-    <p class="section-lead">
-      <span data-lang="pl" class="visible">Dla startupów, które chcą szybko przetestować pomysł. Dla małych firm usługowych, które chcą działać sprawniej i automatyzować rutynę. Bez zbędnych kosztów i bez chaosu.</span>
-      <span data-lang="en">For startups that want to test an idea fast. For small service businesses that want to run smoother and automate the routine. No unnecessary costs, no chaos.</span>
-    </p>
+    <div class="section-tag">Usługi</div>
+    <h2>Co mogę dla Ciebie zrobić?</h2>
   </div>
 
-  <div class="services-grid">
+  <div class="service-block">
+    <h3>Strony internetowe i landing page'e</h3>
+    <p>Buduję strony, które jasno tłumaczą ofertę, budują zaufanie i pomagają zdobywać zapytania od klientów.</p>
+    <p>Nie chodzi tylko o ładny wygląd. Dobra strona powinna odpowiadać na pytania użytkownika: czym się zajmujesz, dla kogo pracujesz, dlaczego warto Ci zaufać i co trzeba zrobić dalej.</p>
+    <div class="subsection-title">W tym obszarze mogę pomóc w:</div>
+    <ul class="content-list">
+      <li>przygotowaniu struktury strony,</li>
+      <li>napisaniu lub uporządkowaniu treści,</li>
+      <li>zaprojektowaniu logicznej ścieżki użytkownika,</li>
+      <li>stworzeniu strony firmowej lub landing page'a,</li>
+      <li>podstawowej optymalizacji SEO,</li>
+      <li>integracji formularzy kontaktowych,</li>
+      <li>wdrożeniu strony i konfiguracji domeny,</li>
+      <li>przygotowaniu strony pod kampanie reklamowe lub sprzedaż usług.</li>
+    </ul>
+    <p class="for-who"><strong>Dla kogo?</strong> Dla firm usługowych, ekspertów, małych marek, lokalnych biznesów, founderów i osób, które potrzebują profesjonalnej obecności online bez budowania dużego procesu projektowego.</p>
+  </div>
 
-    <!-- Web -->
-    <div class="service-card">
-      <div class="service-icon">🌐</div>
-      <h3>
-        <span data-lang="pl" class="visible">Strony internetowe</span>
-        <span data-lang="en">Website Development</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Dla małej firmy usługowej strona to wizytówka i narzędzie sprzedaży w jednym. Dla startupu — pierwszy punkt kontaktu z inwestorem lub klientem. Buduję szybko, z myślą o konwersji.</span>
-        <span data-lang="en">For a small service business, a website is both a calling card and a sales tool. For a startup — the first touchpoint with investors or customers. I build fast, with conversion in mind.</span>
-      </p>
-      <div class="service-tags">
-        <span class="tag">HTML/CSS</span><span class="tag">React</span>
-        <span class="tag">WordPress</span><span class="tag">SEO</span>
-      </div>
+  <div class="service-block">
+    <h3>MVP i prototypy produktów</h3>
+    <p>Pomagam budować pierwsze wersje produktów cyfrowych, które można pokazać użytkownikom, klientom, inwestorom albo partnerom biznesowym.</p>
+    <p>MVP nie powinno być przeładowane funkcjami. Powinno pomóc sprawdzić najważniejszą hipotezę: czy dany pomysł ma sens, czy rozwiązuje realny problem i czy ktoś chce z niego korzystać.</p>
+    <div class="subsection-title">W tym obszarze mogę pomóc w:</div>
+    <ul class="content-list">
+      <li>doprecyzowaniu pomysłu,</li>
+      <li>określeniu zakresu MVP,</li>
+      <li>przygotowaniu user flow,</li>
+      <li>stworzeniu backlogu,</li>
+      <li>zaplanowaniu priorytetów,</li>
+      <li>zbudowaniu prototypu lub wersji demo,</li>
+      <li>przygotowaniu landing page'a do walidacji,</li>
+      <li>opisaniu funkcjonalności dla zespołu IT,</li>
+      <li>przygotowaniu materiałów dla inwestora, partnera lub klienta.</li>
+    </ul>
+    <p class="for-who"><strong>Dla kogo?</strong> Dla founderów, startupów, małych firm technologicznych i osób, które chcą szybko sprawdzić pomysł bez przepalania budżetu na zbyt duży zakres.</p>
+  </div>
+
+  <div class="service-block">
+    <h3>Automatyzacje AI</h3>
+    <p>Pomagam firmom wykorzystywać AI tam, gdzie realnie oszczędza czas: w powtarzalnych zadaniach, pracy z tekstem, obsłudze zapytań, analizie informacji, raportowaniu, generowaniu dokumentów i porządkowaniu procesów.</p>
+    <p>AI nie powinno być ozdobnikiem. Powinno rozwiązywać konkretny problem: skracać czas pracy, zmniejszać liczbę ręcznych działań albo pomagać szybciej podejmować decyzje.</p>
+    <div class="subsection-title">W tym obszarze mogę pomóc w:</div>
+    <ul class="content-list">
+      <li>analizie procesów, które warto zautomatyzować,</li>
+      <li>przygotowaniu prostych workflow z użyciem AI,</li>
+      <li>automatyzacji generowania treści,</li>
+      <li>automatyzacji maili, raportów lub dokumentów,</li>
+      <li>tworzeniu promptów i instrukcji dla zespołu,</li>
+      <li>integracji narzędzi AI z codzienną pracą,</li>
+      <li>przygotowaniu wewnętrznych asystentów AI,</li>
+      <li>uporządkowaniu wiedzy firmowej pod pracę z AI.</li>
+    </ul>
+    <p class="for-who"><strong>Dla kogo?</strong> Dla małych firm, zespołów operacyjnych, founderów, PM-ów, marketerów i firm IT, które chcą korzystać z AI praktycznie, a nie tylko „dla trendu".</p>
+  </div>
+
+  <div class="service-block">
+    <h3>Proste systemy i narzędzia wewnętrzne</h3>
+    <p>Buduję i projektuję proste narzędzia, które pomagają firmom uporządkować codzienną pracę.</p>
+    <p>Nie każda firma potrzebuje dużego systemu szytego na miarę. Czasem wystarczy dobrze zaprojektowany panel, formularz, baza danych, dashboard, prosty CRM albo narzędzie do obsługi konkretnego procesu.</p>
+    <div class="subsection-title">W tym obszarze mogę pomóc w:</div>
+    <ul class="content-list">
+      <li>analizie procesu,</li>
+      <li>opisaniu wymagań,</li>
+      <li>zaprojektowaniu prostego narzędzia,</li>
+      <li>stworzeniu panelu administracyjnego,</li>
+      <li>przygotowaniu dashboardu,</li>
+      <li>automatyzacji ręcznej pracy,</li>
+      <li>integracji kilku narzędzi,</li>
+      <li>uporządkowaniu danych,</li>
+      <li>przygotowaniu rozwiązania do dalszego rozwoju przez zespół IT.</li>
+    </ul>
+    <p class="for-who"><strong>Dla kogo?</strong> Dla firm, które pracują na arkuszach, mailach, ręcznych raportach i powtarzalnych zadaniach, ale nie chcą od razu inwestować w duży system.</p>
+  </div>
+
+  <div class="service-block">
+    <h3>Wsparcie delivery dla firm IT</h3>
+    <p>Wspieram software house'y, agencje digital i zespoły technologiczne wtedy, gdy potrzebują dodatkowej, doświadczonej osoby do dowiezienia konkretnego zakresu — bez zatrudniania kolejnego PM-a, analityka albo developera na stałe.</p>
+    <p>Mogę wejść w projekt punktowo lub na określony czas: uporządkować chaos, przejąć część komunikacji, przygotować dokumentację, wesprzeć PM-a, pomóc z discovery, rozpisać scope, przygotować plan delivery albo zbudować szybki prototyp z użyciem AI.</p>
+    <div class="subsection-title">W tym obszarze mogę pomóc w:</div>
+    <ul class="content-list">
+      <li>prowadzeniu lub wsparciu projektu,</li>
+      <li>uporządkowaniu zakresu i backlogu,</li>
+      <li>przygotowaniu dokumentacji funkcjonalnej,</li>
+      <li>prowadzeniu discovery,</li>
+      <li>rozpisaniu wymagań,</li>
+      <li>przygotowaniu planu delivery,</li>
+      <li>wsparciu komunikacji z klientem,</li>
+      <li>przygotowaniu statusów, raportów i decision logów,</li>
+      <li>analizie ryzyk projektowych,</li>
+      <li>wsparciu ofertowania,</li>
+      <li>przygotowaniu estymacji na podstawie zakresu,</li>
+      <li>tworzeniu materiałów dla klienta,</li>
+      <li>prototypowaniu rozwiązań z użyciem AI,</li>
+      <li>uporządkowaniu procesu pracy zespołu.</li>
+    </ul>
+    <p class="for-who"><strong>Dla kogo?</strong> Dla firm IT, które mają dużo projektów, ograniczoną dostępność zespołu, chwilowy brak PM-a, przeciążone delivery albo potrzebę szybkiego wsparcia bez powiększania stałego zespołu.</p>
+  </div>
+
+</section>
+
+<!-- ── PROCESS ───────────────────────────────────────────────────── -->
+<section id="process">
+  <div class="section-header">
+    <div class="section-tag">Jak pracuję</div>
+    <h2>Jak pracuję?</h2>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Najpierw rozumiem problem</h3>
+      <p>Zanim zaproponuję rozwiązanie, chcę zrozumieć, co naprawdę chcesz osiągnąć. Rozmawiamy o celu, użytkownikach, obecnym procesie, ograniczeniach, budżecie, ryzykach i tym, co musi powstać jako pierwsze. Nie zaczynam od technologii. Zaczynam od sensu biznesowego.</p>
     </div>
-
-    <!-- MVP -->
-    <div class="service-card">
-      <div class="service-icon">🚀</div>
-      <h3>
-        <span data-lang="pl" class="visible">Produkty MVP</span>
-        <span data-lang="en">MVP Products</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Masz pomysł na produkt, ale nie masz jeszcze własnego teamu dev? Pomagam startupom zbudować pierwszą działającą wersję — tak, żeby jak najszybciej dotrzeć do użytkowników i nie przepalić runway.</span>
-        <span data-lang="en">Have a product idea but no dev team yet? I help startups ship their first working version — fast enough to reach users before burning through runway.</span>
-      </p>
-      <div class="service-tags">
-        <span class="tag">Prototypowanie</span><span class="tag">No-code</span>
-        <span class="tag">Webflow</span><span class="tag">Supabase</span>
-      </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Porządkuję zakres</h3>
+      <p>Pomagam oddzielić rzeczy konieczne od tych, które mogą poczekać. To szczególnie ważne przy MVP, stronach, automatyzacjach i projektach IT, w których łatwo zbudować za dużo na start. Efektem może być prosty plan, backlog, lista funkcjonalności, mapa procesu albo dokumentacja, z którą można dalej pracować.</p>
     </div>
-
-    <!-- Systems -->
-    <div class="service-card">
-      <div class="service-icon">⚙️</div>
-      <h3>
-        <span data-lang="pl" class="visible">Proste systemy</span>
-        <span data-lang="en">Simple Systems</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Małe firmy usługowe często płacą za narzędzia, które są zbyt duże lub zbyt drogie. Buduję proste systemy dopasowane do tego, co naprawdę potrzebujesz: panel klienta, CRM, system rezerwacji, formularz z backendem.</span>
-        <span data-lang="en">Small service businesses often pay for tools that are too big or too expensive. I build simple systems fitted to what you actually need: client panels, CRMs, booking systems, forms with backends.</span>
-      </p>
-      <div class="service-tags">
-        <span class="tag">Airtable</span><span class="tag">Notion</span>
-        <span class="tag">Node.js</span><span class="tag">API</span>
-      </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Projektuję rozwiązanie</h3>
+      <p>Na tym etapie przekładam potrzeby na strukturę strony, user flow, proces, makietę, dokumentację lub architekturę prostego rozwiązania. Dbam o to, żeby rozwiązanie było zrozumiałe, możliwe do wdrożenia i dopasowane do realnego etapu rozwoju firmy.</p>
     </div>
-
-    <!-- AI -->
-    <div class="service-card">
-      <div class="service-icon">🤖</div>
-      <h3>
-        <span data-lang="pl" class="visible">Automatyzacja AI</span>
-        <span data-lang="en">AI Automation</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Powtarzalne zadania, które zajmują Twój czas — odpowiadanie na zapytania, generowanie treści, wysyłka maili, raportowanie — można zautomatyzować. Wdrażam przepływy pracy z AI, które działają w tle, gdy Ty zajmujesz się biznesem.</span>
-        <span data-lang="en">Repetitive tasks eating your time — answering enquiries, generating content, sending emails, reporting — can be automated. I build AI workflows that run in the background while you focus on your business.</span>
-      </p>
-      <div class="service-tags">
-        <span class="tag">OpenAI</span><span class="tag">Make.com</span>
-        <span class="tag">n8n</span><span class="tag">Zapier</span>
-      </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Buduję, wdrażam albo wspieram zespół</h3>
+      <p>W zależności od potrzeb mogę samodzielnie zbudować stronę, MVP, automatyzację lub prosty system. Mogę też wesprzeć Twój zespół jako PM, delivery partner, osoba od dokumentacji, scope'u albo prototypowania. Pracuję elastycznie — tak, żeby dowieźć konkretny efekt, a nie tworzyć proces dla samego procesu.</p>
     </div>
-
+    <div class="step">
+      <div class="step-num">5</div>
+      <h3>Pomagam rozwijać dalej</h3>
+      <p>Po pierwszym wdrożeniu możemy analizować, co działa, co wymaga poprawy i co warto rozwijać dalej. Pomagam podejmować decyzje na podstawie celu, danych, feedbacku i realnych możliwości zespołu.</p>
+    </div>
   </div>
 </section>
 
-<!-- ── WHY VIBE CODING ──────────────────────────────────────────── -->
+<!-- ── WHY ME ───────────────────────────────────────────────────── -->
 <section id="why-me" style="background:var(--bg2);">
-
   <div class="section-header">
-    <div class="section-tag">
-      <span data-lang="pl" class="visible">Dlaczego nie software house?</span>
-      <span data-lang="en">Why not a software house?</span>
-    </div>
-    <h2>
-      <span data-lang="pl" class="visible">Jest szybszy, tańszy i bezpieczniejszy sposób</span>
-      <span data-lang="en">There's a faster, cheaper and safer way</span>
-    </h2>
-    <p class="section-lead">
-      <span data-lang="pl" class="visible">Przez 9 lat pracowałam w software housach i zarządzałam projektami od środka. Wiem dokładnie, gdzie przepada Twój budżet i czas. Dlatego wybrałam inną drogę.</span>
-      <span data-lang="en">I spent 9 years inside software houses managing projects. I know exactly where your budget and time disappear. That's why I chose a different path.</span>
-    </p>
+    <div class="section-tag">Dlaczego RutaHub</div>
+    <h2>Dlaczego RutaHub?</h2>
   </div>
-
-  <!-- Comparison table -->
-  <div class="why-compare" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:4rem;">
-
-    <!-- Software house -->
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;opacity:.85;">
-      <div style="font-size:1.5rem;margin-bottom:.8rem;">🏢</div>
-      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.2rem;color:var(--muted);">
-        <span data-lang="pl" class="visible">Tradycyjny software house</span>
-        <span data-lang="en">Traditional software house</span>
-      </h3>
-      <div style="display:flex;flex-direction:column;gap:.75rem;">
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Płacisz za PM-a, account managera, sprzedawcę — zanim ktokolwiek napisze linijkę kodu</span>
-          <span data-lang="en">You pay for a PM, account manager, salesperson — before anyone writes a line of code</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Minimalne budżety od 30–50k PLN, długie onboardingi</span>
-          <span data-lang="en">Minimum budgets of 30–50k PLN, long onboarding</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Rozmawiasz z PM-em, nie z osobą, która buduje</span>
-          <span data-lang="en">You talk to a PM, not the person actually building</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Rotacja teamu — developer, który zna Twój projekt, może odejść w połowie</span>
-          <span data-lang="en">Team rotation — the developer who knows your project may leave mid-way</span>
-        </div>
-      </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <h3>Bo łączę perspektywę biznesu, projektu i wykonania</h3>
+      <p>W wielu projektach problemem nie jest sama technologia. Problemem jest niejasny zakres, brak decyzji, źle ustawione priorytety, niedoszacowanie pracy albo komunikacja, która rozjeżdża się między biznesem a zespołem.</p>
+      <p>Mam doświadczenie w prowadzeniu projektów IT, pracy z klientami, zespołami developerskimi i procesami delivery. Dzięki temu patrzę na projekt szerzej niż tylko przez listę zadań do wykonania.</p>
     </div>
-
-    <!-- Freelance developer -->
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;opacity:.85;">
-      <div style="font-size:1.5rem;margin-bottom:.8rem;">👨‍💻</div>
-      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.2rem;color:var(--muted);">
-        <span data-lang="pl" class="visible">Freelance developer</span>
-        <span data-lang="en">Freelance developer</span>
-      </h3>
-      <div style="display:flex;flex-direction:column;gap:.75rem;">
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Musisz sam wiedzieć co chcesz zbudować — i umieć to opisać technicznie</span>
-          <span data-lang="en">You need to know exactly what to build — and be able to describe it technically</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Zarządzanie projektem spada na Ciebie — terminy, scope, feedback</span>
-          <span data-lang="en">Project management falls on you — deadlines, scope, feedback loops</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Dobry developer rzadko myśli biznesowo — dostaniesz to, o co poprosisz, nie to, czego potrzebujesz</span>
-          <span data-lang="en">Good developers rarely think business-first — you'll get what you asked for, not what you need</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--muted);align-items:flex-start;">
-          <span style="color:#ef4444;flex-shrink:0;margin-top:2px;">✕</span>
-          <span data-lang="pl" class="visible">Trudno ocenić jakość i wycenę bez technicznego backgroundu</span>
-          <span data-lang="en">Hard to evaluate quality and pricing without a technical background</span>
-        </div>
-      </div>
+    <div class="why-card">
+      <h3>Bo nie każdy temat wymaga dużego zespołu</h3>
+      <p>Pełny zespół projektowy ma sens przy dużych, złożonych produktach. Ale wiele tematów można dowieźć szybciej i lżej: z jedną doświadczoną osobą, dobrze ustawionym zakresem i rozsądnym wykorzystaniem AI.</p>
+      <p>RutaHub jest dla firm, które potrzebują konkretnego efektu, ale nie chcą od razu uruchamiać dużego procesu, zatrudniać kolejnej osoby albo angażować kilkuosobowego zespołu.</p>
     </div>
-
-    <!-- RutaHub -->
-    <div style="background:rgba(108,99,255,0.07);border:1px solid rgba(108,99,255,0.4);border-radius:var(--radius);padding:2rem;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div>
-      <div style="font-size:1.5rem;margin-bottom:.8rem;">⚡</div>
-      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.2rem;color:var(--accent2);">RutaHub</h3>
-      <div style="display:flex;flex-direction:column;gap:.75rem;">
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--text);align-items:flex-start;">
-          <span style="color:#22c55e;flex-shrink:0;margin-top:2px;">✓</span>
-          <span data-lang="pl" class="visible">Jedna osoba — PM i builder w jednym. Pełna odpowiedzialność za wynik</span>
-          <span data-lang="en">One person — PM and builder in one. Full accountability for the outcome</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--text);align-items:flex-start;">
-          <span style="color:#22c55e;flex-shrink:0;margin-top:2px;">✓</span>
-          <span data-lang="pl" class="visible">AI-assisted development = ułamek czasu i kosztu tradycyjnego zespołu developerów</span>
-          <span data-lang="en">AI-assisted development = a fraction of the time and cost of a traditional dev team</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--text);align-items:flex-start;">
-          <span style="color:#22c55e;flex-shrink:0;margin-top:2px;">✓</span>
-          <span data-lang="pl" class="visible">Pomagam Ci zdefiniować co faktycznie potrzebujesz — zanim zaczniemy budować</span>
-          <span data-lang="en">I help you define what you actually need — before we start building</span>
-        </div>
-        <div style="display:flex;gap:10px;font-size:.85rem;color:var(--text);align-items:flex-start;">
-          <span style="color:#22c55e;flex-shrink:0;margin-top:2px;">✓</span>
-          <span data-lang="pl" class="visible">9 lat w branży — wiem jakie pytania zadać i czego nie obiecywać</span>
-          <span data-lang="en">9 years in the industry — I know what questions to ask and what not to promise</span>
-        </div>
-      </div>
+    <div class="why-card">
+      <h3>Bo pracuję praktycznie</h3>
+      <p>Nie tworzę dokumentacji dla samej dokumentacji. Nie dokładam złożoności tam, gdzie nie jest potrzebna. Nie proponuję technologii tylko dlatego, że jest modna.</p>
+      <p>Szukam najprostszego sensownego rozwiązania, które można wdrożyć, przetestować i rozwijać dalej.</p>
     </div>
-
-  </div>
-
-  <!-- Vibe coding explainer -->
-  <div class="vibe-explainer" style="background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:2.5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
-    <div>
-      <div class="section-tag" style="margin-bottom:.8rem;">
-        <span data-lang="pl" class="visible">Czym jest vibe coding?</span>
-        <span data-lang="en">What is vibe coding?</span>
-      </div>
-      <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:1rem;letter-spacing:-.5px;">
-        <span data-lang="pl" class="visible">AI jako narzędzie, doświadczenie jako filtr</span>
-        <span data-lang="en">AI as the tool, experience as the filter</span>
-      </h3>
-      <p style="color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:1rem;">
-        <span data-lang="pl" class="visible">Vibe coding to podejście, w którym używam modeli AI (GPT-4, Claude) do pisania kodu — ale to ja decyduję co, jak i po co. AI przyspiesza budowanie. Moje 9-letnie doświadczenie PM sprawia, że nie buduję rzeczy niepotrzebnych.</span>
-        <span data-lang="en">Vibe coding means using AI models (GPT-4, Claude) to write code — but I decide what, how, and why. AI speeds up the building. My 9 years of PM experience means I don't build things you don't need.</span>
-      </p>
-      <p style="color:var(--muted);font-size:.92rem;line-height:1.8;">
-        <span data-lang="pl" class="visible">Efekt: dostajesz produkt działający jak z agencji, w czasie i cenie freelancera.</span>
-        <span data-lang="en">The result: you get an agency-quality product at freelancer speed and cost.</span>
-      </p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:1rem;">
-      <div style="background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:10px;padding:1.2rem 1.4rem;">
-        <div style="font-size:.75rem;color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:.4rem;">
-          <span data-lang="pl" class="visible">Bez AI — tradycyjny developer</span>
-          <span data-lang="en">Without AI — traditional developer</span>
-        </div>
-        <div style="font-size:.88rem;color:var(--muted);">
-          <span data-lang="pl" class="visible">Prosta strona: 2–4 tygodnie · 5 000–15 000 PLN</span>
-          <span data-lang="en">Simple website: 2–4 weeks · 5,000–15,000 PLN</span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.8rem;">↓</div>
-      <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.3);border-radius:10px;padding:1.2rem 1.4rem;">
-        <div style="font-size:.75rem;color:var(--accent2);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:.4rem;">
-          <span data-lang="pl" class="visible">Z AI + doświadczenie PM — RutaHub</span>
-          <span data-lang="en">With AI + PM experience — RutaHub</span>
-        </div>
-        <div style="font-size:.88rem;color:var(--text);">
-          <span data-lang="pl" class="visible">Prosta strona: 3–7 dni · znacznie niższy koszt</span>
-          <span data-lang="en">Simple website: 3–7 days · significantly lower cost</span>
-        </div>
-      </div>
-      <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:.2rem;">
-        <span data-lang="pl" class="visible">*orientacyjne widełki, zależne od zakresu projektu</span>
-        <span data-lang="en">*indicative ranges, depending on project scope</span>
-      </p>
+    <div class="why-card">
+      <h3>Bo AI traktuję jako narzędzie, nie magię</h3>
+      <p>Korzystam z AI, żeby przyspieszyć pracę: analizę, prototypowanie, pisanie kodu, tworzenie treści, dokumentacji i automatyzacji.</p>
+      <p>Ale odpowiedzialność za decyzje, jakość, logikę produktu i sens biznesowy nadal zostaje po stronie człowieka. AI pomaga pracować szybciej, ale nie zastępuje myślenia.</p>
     </div>
   </div>
+</section>
 
+<!-- ── WHEN ─────────────────────────────────────────────────────── -->
+<section id="when">
+  <div class="section-header">
+    <div class="section-tag">Kiedy warto</div>
+    <h2>Kiedy warto ze mną porozmawiać?</h2>
+  </div>
+  <div class="when-grid">
+    <div class="when-card">
+      <h3>Gdy masz pomysł, ale nie wiesz, od czego zacząć</h3>
+      <p>Pomogę Ci uporządkować koncepcję, określić pierwszy sensowny zakres i zdecydować, co naprawdę warto zbudować na start.</p>
+    </div>
+    <div class="when-card">
+      <h3>Gdy potrzebujesz strony, która jasno sprzedaje ofertę</h3>
+      <p>Pomogę Ci zaplanować strukturę, treść i wdrożenie strony tak, żeby użytkownik szybko rozumiał, kim jesteś, co oferujesz i dlaczego warto się z Tobą skontaktować.</p>
+    </div>
+    <div class="when-card">
+      <h3>Gdy Twoja firma traci czas na ręczne zadania</h3>
+      <p>Pomogę znaleźć miejsca, w których AI lub automatyzacja mogą realnie oszczędzić czas — bez budowania zbyt dużego systemu.</p>
+    </div>
+    <div class="when-card">
+      <h3>Gdy Twój zespół IT potrzebuje dodatkowego wsparcia</h3>
+      <p>Mogę wejść jako elastyczne wsparcie PM/delivery/product — szczególnie wtedy, gdy trzeba uporządkować projekt, przygotować dokumentację, odciążyć zespół albo szybko dowieźć konkretny zakres.</p>
+    </div>
+    <div class="when-card">
+      <h3>Gdy nie chcesz zatrudniać kolejnej osoby na etat</h3>
+      <p>Nie każdy problem wymaga rekrutacji. Czasem wystarczy doświadczone wsparcie na określony czas, konkretny projekt albo wybrany obszar pracy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── COOPERATION ──────────────────────────────────────────────── -->
+<section id="cooperation" style="background:var(--bg2);">
+  <div class="section-header">
+    <div class="section-tag">Współpraca</div>
+    <h2>Przykładowe obszary współpracy</h2>
+  </div>
+  <div class="coop-grid">
+    <div class="coop-card">
+      <h3>Dla małych firm</h3>
+      <ul class="content-list">
+        <li>strona internetowa dla firmy usługowej,</li>
+        <li>landing page pod kampanię,</li>
+        <li>formularz zapytań,</li>
+        <li>prosta automatyzacja obsługi klienta,</li>
+        <li>baza klientów lub prosty CRM,</li>
+        <li>uporządkowanie treści oferty,</li>
+        <li>wdrożenie narzędzi AI do codziennej pracy.</li>
+      </ul>
+    </div>
+    <div class="coop-card">
+      <h3>Dla founderów</h3>
+      <ul class="content-list">
+        <li>opis pomysłu na produkt,</li>
+        <li>zakres MVP,</li>
+        <li>backlog funkcjonalności,</li>
+        <li>prototyp,</li>
+        <li>landing page do walidacji,</li>
+        <li>demo dla inwestora lub partnera,</li>
+        <li>dokumentacja dla zespołu developerskiego,</li>
+        <li>wsparcie w wyborze pierwszych funkcji.</li>
+      </ul>
+    </div>
+    <div class="coop-card">
+      <h3>Dla firm IT</h3>
+      <ul class="content-list">
+        <li>fractional PM,</li>
+        <li>delivery support,</li>
+        <li>wsparcie przeciążonego PM-a,</li>
+        <li>dokumentacja funkcjonalna,</li>
+        <li>discovery,</li>
+        <li>backlog refinement,</li>
+        <li>komunikacja z klientem,</li>
+        <li>przygotowanie ofert i scope'u,</li>
+        <li>status reporting,</li>
+        <li>analiza ryzyk,</li>
+        <li>prototypowanie z AI,</li>
+        <li>uporządkowanie procesu projektowego.</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- ── ABOUT ─────────────────────────────────────────────────────── -->
@@ -896,48 +1092,52 @@
     <div class="about-avatar">👩‍💻</div>
     <div class="about-badge-card">
       <div class="dot">●</div>
-      <span data-lang="pl" class="visible">Dostępna do projektów</span>
-      <span data-lang="en">Open to projects</span>
+      <span>Dostępna do projektów</span>
     </div>
   </div>
 
   <div class="about-text">
-    <div class="section-tag">
-      <span data-lang="pl" class="visible">O mnie</span>
-      <span data-lang="en">About me</span>
-    </div>
-
-    <!-- PL -->
-    <div data-lang="pl" class="visible">
-      <h2>Cześć, jestem Żaneta</h2>
-      <p>Senior Project Manager z 9+ latami doświadczenia, która teraz buduje produkty cyfrowe dla swoich klientów. Zarządzałam zespołami do 40 osób, dostarczałam projekty dla klientów z UK, Holandii i USA — a w 2026 r. zbudowałam własny produkt solo, z AI.</p>
-      <p>Dla Ciebie oznacza to: wiem, jak wygląda projekt od środka. Nie przepalam budżetu, nie obiecuję niemożliwego, dostarczam na czas.</p>
-    </div>
-
-    <!-- EN -->
-    <div data-lang="en">
-      <h2>Hi, I'm Żaneta</h2>
-      <p>Senior Project Manager with 9+ years of experience, now building digital products for clients. I've managed teams of up to 40, delivered projects for clients in the UK, Netherlands and USA — and in 2026 built my own product solo, with AI.</p>
-      <p>For you that means: I know how projects look from the inside. I don't burn budgets, I don't overpromise, and I deliver on time.</p>
-    </div>
-
+    <div class="section-tag">O mnie</div>
+    <h2>Żaneta Pindel</h2>
+    <p>Nazywam się Żaneta Pindel i od lat pracuję na styku biznesu, technologii i zarządzania projektami.</p>
+    <p>Prowadziłam projekty IT, współpracowałam z zespołami developerskimi, klientami biznesowymi, founderami, designerami, QA i stakeholderami po stronie klienta. Zarządzałam zakresem, budżetami, komunikacją, ryzykami i procesem dowożenia produktów cyfrowych.</p>
+    <p>RutaHub powstał z potrzeby pracy w lżejszym, bardziej praktycznym modelu.</p>
+    <p>Widzę, że wiele firm nie potrzebuje od razu dużego zespołu, rozbudowanego procesu albo kolejnej osoby zatrudnionej na stałe. Często potrzebują kogoś, kto potrafi szybko zrozumieć problem, uporządkować zakres, zaproponować sensowne rozwiązanie i pomóc je dowieźć.</p>
+    <p>Łączę doświadczenie Project Managerki z praktycznym budowaniem rozwiązań przy wsparciu AI. Dzięki temu mogę działać zarówno strategicznie, jak i bardzo konkretnie — od rozmowy o celu biznesowym po wdrożenie strony, MVP, automatyzacji albo uporządkowanie projektu.</p>
     <div style="margin-top:1.5rem;">
       <a href="about.html" class="btn btn-outline" style="font-size:.85rem;display:inline-flex;align-items:center;gap:8px;">
-        <span data-lang="pl" class="visible">Poznaj moją historię →</span>
-        <span data-lang="en">Read my full story →</span>
+        Poznaj moją historię →
       </a>
     </div>
+  </div>
+</section>
 
-    <div class="skills-list">
-      <span class="skill-chip">React</span>
-      <span class="skill-chip">Node.js</span>
-      <span class="skill-chip">Python</span>
-      <span class="skill-chip">OpenAI API</span>
-      <span class="skill-chip">Figma</span>
-      <span class="skill-chip">Webflow</span>
-      <span class="skill-chip">Make.com</span>
-      <span class="skill-chip">n8n</span>
-      <span class="skill-chip">Supabase</span>
+<!-- ── PROJECT TYPES ────────────────────────────────────────────── -->
+<section id="project-types" style="background:var(--bg2);">
+  <div class="section-header">
+    <div class="section-tag">Projekty</div>
+    <h2>Jakie projekty realizuję?</h2>
+  </div>
+  <div class="project-types-grid">
+    <div class="project-type-card">
+      <h3>Strony i landing page'e</h3>
+      <p>Dla firm, które chcą lepiej pokazać ofertę, zdobywać zapytania i wyglądać profesjonalnie w internecie.</p>
+    </div>
+    <div class="project-type-card">
+      <h3>MVP i prototypy</h3>
+      <p>Dla founderów i firm, które chcą sprawdzić pomysł przed większą inwestycją.</p>
+    </div>
+    <div class="project-type-card">
+      <h3>Automatyzacje AI</h3>
+      <p>Dla zespołów, które chcą ograniczyć ręczną pracę i wykorzystać AI w konkretnych procesach.</p>
+    </div>
+    <div class="project-type-card">
+      <h3>Narzędzia wewnętrzne</h3>
+      <p>Dla firm, które potrzebują prostego systemu, panelu, bazy danych, dashboardu albo workflow.</p>
+    </div>
+    <div class="project-type-card">
+      <h3>Wsparcie delivery</h3>
+      <p>Dla firm IT, które potrzebują dodatkowej osoby do projektu, ale nie chcą zwiększać stałych kosztów zespołu.</p>
     </div>
   </div>
 </section>
@@ -945,182 +1145,68 @@
 <!-- ── CASE STUDIES ──────────────────────────────────────────────── -->
 <section id="cases">
   <div class="section-header">
-    <div class="section-tag">Case Studies</div>
-    <h2>
-      <span data-lang="pl" class="visible">Wybrane realizacje</span>
-      <span data-lang="en">Selected Projects</span>
-    </h2>
-    <p class="section-lead">
-      <span data-lang="pl" class="visible">Kilka projektów, z których jestem szczególnie dumna. Każdy z nich rozwiązał realny problem.</span>
-      <span data-lang="en">A few projects I'm particularly proud of. Each one solved a real problem for a real client.</span>
-    </p>
+    <div class="section-tag">Realizacje</div>
+    <h2>Realizacje</h2>
   </div>
 
   <div class="cases-grid">
 
-    <!-- Case 1 -->
     <div class="case-card">
       <div class="case-thumb case-thumb-1">🏡</div>
       <div class="case-body">
         <div class="case-meta">
-          <span class="case-type">
-            <span data-lang="pl" class="visible">Portal + Automatyzacja AI</span>
-            <span data-lang="en">Portal + AI Automation</span>
-          </span>
+          <span class="case-type">Własny produkt / portal afiliacyjny</span>
         </div>
         <h3>durnostojki.pl</h3>
-        <p>
-          <span data-lang="pl" class="visible">Portal afiliacyjny w niszy dom i ogród zbudowany samodzielnie — od pomysłu do działającego produktu w 4 miesiące, po godzinach. Stack: Next.js 15, React, TypeScript, Supabase, OpenAI API, Vercel. AI generuje treści produktowe automatycznie.</span>
-          <span data-lang="en">Affiliate portal in the home & garden niche — built solo from idea to live product in 4 months, after hours. Stack: Next.js 15, React, TypeScript, Supabase, OpenAI API, Vercel. AI auto-generates product content.</span>
-        </p>
+        <p>Portal afiliacyjny w obszarze home &amp; garden, zbudowany jako własny produkt cyfrowy. Projekt obejmował koncepcję produktu, strukturę serwisu, logikę prezentacji produktów, pracę z contentem i przygotowanie rozwiązania pod dalszy rozwój SEO oraz monetyzację afiliacyjną.</p>
         <div class="case-result">
           <span class="icon">✓</span>
-          <span>
-            <strong>
-              <span data-lang="pl" class="visible">Przychód od pierwszego dnia</span>
-              <span data-lang="en">Revenue from day one</span>
-            </strong>
-            <span data-lang="pl" class="visible"> · zbudowane solo z AI</span>
-            <span data-lang="en"> · built solo with AI</span>
-          </span>
+          <span><strong>Zakres prac:</strong> koncepcja, struktura, content, produkt, wdrożenie</span>
         </div>
       </div>
     </div>
 
-    <!-- Case 2 -->
     <div class="case-card">
       <div class="case-thumb case-thumb-2">🧘‍♀️</div>
       <div class="case-body">
         <div class="case-meta">
-          <span class="case-type">
-            <span data-lang="pl" class="visible">Strona dla małej firmy</span>
-            <span data-lang="en">Local business website</span>
-          </span>
+          <span class="case-type">Projekt demonstracyjny</span>
         </div>
-        <h3>
-          <span data-lang="pl" class="visible">Studio Równowaga — Joga & Pilates</span>
-          <span data-lang="en">Studio Równowaga — Yoga & Pilates</span>
-        </h3>
-        <p>
-          <span data-lang="pl" class="visible">Pełna strona dla studia wellness: grafik zajęć, system rezerwacji, opinie, formularz kontaktowy. Jasny, ciepły design dopasowany do marki.</span>
-          <span data-lang="en">Full website for a wellness studio: class schedule, booking system, reviews, contact form. Warm, clean design tailored to the brand.</span>
-        </p>
+        <h3>Demo strony dla studia jogi</h3>
+        <p>Projekt strony dla marki usługowej, której celem jest jasne pokazanie oferty, klimatu marki i zachęcenie użytkownika do kontaktu. Projekt skupiał się na prostym przekazie, przejrzystej strukturze i spokojnej komunikacji dopasowanej do branży wellness.</p>
         <div class="case-result">
           <span class="icon">✓</span>
-          <a href="demo-local.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">
-            <span data-lang="pl" class="visible">Zobacz demo →</span>
-            <span data-lang="en">View demo →</span>
-          </a>
+          <a href="demo-local.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">Zobacz demo →</a>
         </div>
       </div>
     </div>
 
-    <!-- Case 3 -->
     <div class="case-card">
       <div class="case-thumb case-thumb-3">🎨</div>
       <div class="case-body">
         <div class="case-meta">
-          <span class="case-type">
-            <span data-lang="pl" class="visible">Strona agencji</span>
-            <span data-lang="en">Agency website</span>
-          </span>
+          <span class="case-type">Projekt demonstracyjny</span>
         </div>
-        <h3>
-          <span data-lang="pl" class="visible">Forma Studio — Agencja kreatywna</span>
-          <span data-lang="en">Forma Studio — Creative Agency</span>
-        </h3>
-        <p>
-          <span data-lang="pl" class="visible">Strona dla agencji brandingowej: odważna typografia, portfolio z efektem hover, animowany marquee, sekcja procesu. Ciemny, minimalistyczny styl.</span>
-          <span data-lang="en">Website for a branding agency: bold typography, hover portfolio grid, animated marquee, process section. Dark minimalist style.</span>
-        </p>
+        <h3>Demo strony dla agencji</h3>
+        <p>Przykład strony dla małej firmy, która potrzebuje profesjonalnej obecności online, jasnego opisu usług i prostego sposobu pozyskiwania zapytań. Projekt pokazuje, jak można uporządkować ofertę i przedstawić ją w sposób zrozumiały dla potencjalnego klienta.</p>
         <div class="case-result">
           <span class="icon">✓</span>
-          <a href="demo-agency.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">
-            <span data-lang="pl" class="visible">Zobacz demo →</span>
-            <span data-lang="en">View demo →</span>
-          </a>
+          <a href="demo-agency.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">Zobacz demo →</a>
         </div>
       </div>
     </div>
 
-    <!-- Case 4 -->
     <div class="case-card">
       <div class="case-thumb case-thumb-1" style="background:linear-gradient(135deg,#1a1228,#2d1b4e,#8b6914)">🚀</div>
       <div class="case-body">
         <div class="case-meta">
-          <span class="case-type">
-            <span data-lang="pl" class="visible">Landing page SaaS</span>
-            <span data-lang="en">SaaS landing page</span>
-          </span>
+          <span class="case-type">Projekt demonstracyjny</span>
         </div>
-        <h3>
-          <span data-lang="pl" class="visible">Nexly — Startup Tech</span>
-          <span data-lang="en">Nexly — Tech Startup</span>
-        </h3>
-        <p>
-          <span data-lang="pl" class="visible">Landing page produktu SaaS dla startupu: hero z mockupem aplikacji, features, social proof, pricing. Ciemny, nowoczesny styl z animacjami.</span>
-          <span data-lang="en">SaaS product landing page for a startup: hero with app mockup, features, social proof, pricing. Dark modern style with animations.</span>
-        </p>
+        <h3>Demo SaaS / produktu cyfrowego</h3>
+        <p>Przykład landing page'a dla produktu technologicznego, którego celem jest szybkie wyjaśnienie wartości, pokazanie funkcji i zachęcenie użytkownika do zainteresowania się produktem. Projekt skupiał się na komunikacji wartości, strukturze sekcji i przedstawieniu funkcji w prosty, biznesowy sposób.</p>
         <div class="case-result">
           <span class="icon">✓</span>
-          <a href="demo-startup.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">
-            <span data-lang="pl" class="visible">Zobacz demo →</span>
-            <span data-lang="en">View demo →</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Case 5 -->
-    <div class="case-card">
-      <div class="case-thumb case-thumb-2" style="background:linear-gradient(135deg,#2a1a10,#5a3a20,#c49a2c)">👩‍💼</div>
-      <div class="case-body">
-        <div class="case-meta">
-          <span class="case-type">
-            <span data-lang="pl" class="visible">Strona coachki</span>
-            <span data-lang="en">Coach website</span>
-          </span>
-        </div>
-        <h3>
-          <span data-lang="pl" class="visible">Anna Dąbrowska — Coaching kariery</span>
-          <span data-lang="en">Anna Dąbrowska — Career Coaching</span>
-        </h3>
-        <p>
-          <span data-lang="pl" class="visible">Elegancka strona dla coachki: programy z cennikiem, opinie klientów, formularz rezerwacji bezpłatnej konsultacji. Ciepły, luksusowy styl.</span>
-          <span data-lang="en">Elegant website for a coach: programs with pricing, client testimonials, free consultation booking form. Warm, premium style.</span>
-        </p>
-        <div class="case-result">
-          <span class="icon">✓</span>
-          <a href="demo-coach.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">
-            <span data-lang="pl" class="visible">Zobacz demo →</span>
-            <span data-lang="en">View demo →</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Case 6 -->
-    <div class="case-card">
-      <div class="case-thumb" style="background:linear-gradient(135deg,#0f1f0f,#1a3a1a,#2d5a3a)">🌿</div>
-      <div class="case-body">
-        <div class="case-meta">
-          <span class="case-type">
-            <span data-lang="pl" class="visible">WordPress · Żywa strona</span>
-            <span data-lang="en">WordPress · Live site</span>
-          </span>
-        </div>
-        <h3>powolijoga.pl</h3>
-        <p>
-          <span data-lang="pl" class="visible">Strona dla instruktorki jogi i ajurwedy — mój pierwszy projekt WordPress. Wielostronicowa witryna z grafikiem zajęć, formularzem zgłoszeniowym, sekcją RODO i blogiem. Motyw Divi, polska i angielska wersja treści.</span>
-          <span data-lang="en">Website for a yoga and Ayurveda teacher — my first WordPress project. Multi-page site with a class schedule, sign-up form, GDPR section and blog. Divi theme, Polish and English content.</span>
-        </p>
-        <div class="case-result">
-          <span class="icon">↗</span>
-          <a href="https://powolijoga.pl" target="_blank" rel="noopener" style="color:var(--accent2);font-weight:700;font-size:.83rem;">
-            <span data-lang="pl" class="visible">Otwórz stronę →</span>
-            <span data-lang="en">Visit site →</span>
-          </a>
+          <a href="demo-startup.html" target="_blank" style="color:var(--accent2);font-weight:700;font-size:.83rem;">Zobacz demo →</a>
         </div>
       </div>
     </div>
@@ -1128,81 +1214,119 @@
   </div>
 </section>
 
-<!-- ── PROCESS ───────────────────────────────────────────────────── -->
-<section id="process">
+<!-- ── MODEL ─────────────────────────────────────────────────────── -->
+<section id="model" style="background:var(--bg2);">
   <div class="section-header">
-    <div class="section-tag">
-      <span data-lang="pl" class="visible">Jak pracuję</span>
-      <span data-lang="en">How I work</span>
-    </div>
-    <h2>
-      <span data-lang="pl" class="visible">Prosty proces, pewny wynik</span>
-      <span data-lang="en">Simple process, reliable results</span>
-    </h2>
+    <div class="section-tag">Model współpracy</div>
+    <h2>Model współpracy</h2>
   </div>
+  <div class="model-grid">
+    <div class="model-card">
+      <h3>Konsultacja startowa</h3>
+      <p>Zaczynamy od rozmowy o tym, czego potrzebujesz, na jakim etapie jesteś i jaki efekt chcesz osiągnąć.</p>
+      <p>Celem konsultacji jest szybkie określenie, czy i jak mogę pomóc oraz jaki zakres współpracy będzie najbardziej sensowny.</p>
+    </div>
+    <div class="model-card">
+      <h3>Projekt zamknięty</h3>
+      <p>Dobry model, jeśli potrzebujesz konkretnego efektu: strony, landing page'a, MVP, dokumentacji, automatyzacji albo uporządkowania wybranego obszaru.</p>
+      <p>Na początku ustalamy zakres, priorytety i efekt końcowy.</p>
+    </div>
+    <div class="model-card">
+      <h3>Wsparcie godzinowe lub pakietowe</h3>
+      <p>Dobry model dla firm IT, founderów i zespołów, które potrzebują elastycznego wsparcia w różnych tematach.</p>
+      <p>Może obejmować PM/delivery support, analizę, dokumentację, automatyzacje, prototypowanie, konsultacje lub pracę nad konkretnymi zadaniami.</p>
+    </div>
+    <div class="model-card">
+      <h3>Stała współpraca</h3>
+      <p>Dobry model dla firm, które potrzebują regularnego wsparcia, ale nie chcą zatrudniać kolejnej osoby na etat.</p>
+      <p>Możemy ustalić miesięczny zakres godzin, priorytety i obszary odpowiedzialności.</p>
+    </div>
+  </div>
+</section>
 
-  <div class="process-steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>
-        <span data-lang="pl" class="visible">Odkrycie</span>
-        <span data-lang="en">Discovery</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Poznaję Twój biznes, cele i potrzeby. Bezpłatna konsultacja 30 min.</span>
-        <span data-lang="en">I learn about your business, goals and needs. Free 30-min consultation.</span>
-      </p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>
-        <span data-lang="pl" class="visible">Propozycja</span>
-        <span data-lang="en">Proposal</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Przygotowuję szczegółową ofertę z zakresem, harmonogramem i ceną.</span>
-        <span data-lang="en">I prepare a detailed proposal with scope, timeline, and pricing.</span>
-      </p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>
-        <span data-lang="pl" class="visible">Realizacja</span>
-        <span data-lang="en">Build</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Buduję iteracyjnie, z regularną komunikacją i pokazami postępów.</span>
-        <span data-lang="en">I build iteratively, with regular check-ins and progress demos.</span>
-      </p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <h3>
-        <span data-lang="pl" class="visible">Wdrożenie</span>
-        <span data-lang="en">Launch</span>
-      </h3>
-      <p>
-        <span data-lang="pl" class="visible">Uruchamiam projekt i zostaję do dyspozycji przez 30 dni po starcie.</span>
-        <span data-lang="en">I launch your project and stay available for 30 days post-launch support.</span>
-      </p>
-    </div>
+<!-- ── FAQ ───────────────────────────────────────────────────────── -->
+<section id="faq">
+  <div class="section-header">
+    <div class="section-tag">FAQ</div>
+    <h2>FAQ</h2>
+  </div>
+  <div class="faq-list">
+    <details>
+      <summary>Czy RutaHub to software house?</summary>
+      <div class="faq-answer">
+        <p>Nie w klasycznym rozumieniu.</p>
+        <p>RutaHub działa w lżejszym modelu. Nie buduję dużego zespołu projektowego do każdego tematu. W zależności od potrzeb mogę samodzielnie dowieźć mniejszy projekt, przygotować MVP, stworzyć stronę, zaprojektować automatyzację albo wesprzeć istniejący zespół IT.</p>
+        <p>Jeżeli projekt wymaga większego zespołu, mogę też pomóc uporządkować zakres i przygotować go do dalszej realizacji.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy pracujesz tylko z małymi firmami?</summary>
+      <div class="faq-answer">
+        <p>Nie.</p>
+        <p>Pracuję z małymi firmami, founderami, startupami oraz firmami IT. Różni klienci mają różne potrzeby, ale często łączy ich jedno: chcą szybko i sensownie dowieźć konkretny temat bez niepotrzebnej złożoności.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy możesz wesprzeć software house albo zespół IT?</summary>
+      <div class="faq-answer">
+        <p>Tak.</p>
+        <p>Mogę pomóc jako fractional PM, delivery support, osoba od dokumentacji, scope'u, discovery, komunikacji z klientem, raportowania, ofertowania albo prototypowania z AI.</p>
+        <p>To dobry model, gdy firma ma dużo pracy, ale nie chce od razu zatrudniać kolejnej osoby na stałe.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy budujesz rozwiązania sama?</summary>
+      <div class="faq-answer">
+        <p>W przypadku mniejszych stron, landing page'y, prototypów, automatyzacji i prostych systemów — tak, mogę działać samodzielnie.</p>
+        <p>W większych projektach mogę wesprzeć istniejący zespół albo pomóc przygotować zakres i dokumentację dla developerów.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy korzystasz z AI?</summary>
+      <div class="faq-answer">
+        <p>Tak.</p>
+        <p>Korzystam z AI jako narzędzia wspierającego analizę, prototypowanie, tworzenie treści, dokumentacji, kodu i automatyzacji. Nie traktuję AI jako magicznego zamiennika procesu, jakości i myślenia produktowego.</p>
+        <p>AI przyspiesza pracę, ale decyzje projektowe i odpowiedzialność za efekt nadal wymagają doświadczenia.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy muszę dokładnie wiedzieć, czego potrzebuję?</summary>
+      <div class="faq-answer">
+        <p>Nie.</p>
+        <p>Często pierwszym etapem współpracy jest właśnie uporządkowanie pomysłu, procesu albo problemu. Możesz przyjść z ogólną potrzebą, a ja pomogę przełożyć ją na konkretny zakres i plan działania.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy możesz tylko skonsultować pomysł, bez wdrożenia?</summary>
+      <div class="faq-answer">
+        <p>Tak.</p>
+        <p>Możemy pracować konsultacyjnie: nad zakresem MVP, strukturą strony, procesem, automatyzacją, dokumentacją, backlogiem, ofertą albo planem wdrożenia.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Czy współpracujesz długoterminowo?</summary>
+      <div class="faq-answer">
+        <p>Tak, jeśli jest taka potrzeba.</p>
+        <p>Możliwa jest jednorazowa realizacja, projekt zamknięty, wsparcie godzinowe albo stała miesięczna współpraca.</p>
+      </div>
+    </details>
   </div>
 </section>
 
 <!-- ── CONTACT ───────────────────────────────────────────────────── -->
-<section id="contact">
+<section id="contact" style="background:var(--bg2);">
   <div class="section-header">
     <div class="section-tag">
       <span data-lang="pl" class="visible">Kontakt</span>
       <span data-lang="en">Contact</span>
     </div>
     <h2>
-      <span data-lang="pl" class="visible">Zacznijmy rozmawiać</span>
-      <span data-lang="en">Let's start talking</span>
+      <span data-lang="pl" class="visible">Masz projekt, pomysł albo zespół, który potrzebuje wsparcia?</span>
+      <span data-lang="en">Have a project, idea or team that needs support?</span>
     </h2>
     <p class="section-lead">
-      <span data-lang="pl" class="visible">Masz projekt do omówienia? Napisz do mnie — odpowiadam w ciągu 48 godzin.</span>
-      <span data-lang="en">Have a project to discuss? Write to me — I reply within 48 hours.</span>
+      <span data-lang="pl" class="visible">Napisz do mnie, jeśli chcesz zbudować stronę, MVP, automatyzację AI, prosty system albo potrzebujesz elastycznego wsparcia projektowego dla zespołu IT. Nie musisz mieć gotowej specyfikacji. Wystarczy, że opiszesz, co chcesz osiągnąć, z czym masz problem albo czego brakuje w Twoim zespole.</span>
+      <span data-lang="en">Write to me if you want to build a website, MVP, AI automation, simple system or need flexible project support for your IT team. You don't need a full spec — just describe what you want to achieve or what's missing in your team.</span>
     </p>
   </div>
 
@@ -1215,6 +1339,24 @@
       <p>
         <span data-lang="pl" class="visible">Wolisz porozmawiać bezpośrednio? Napisz na maila lub umów bezpłatną konsultację.</span>
         <span data-lang="en">Prefer a direct conversation? Send an email or book a free consultation call.</span>
+      </p>
+
+      <p style="font-size:.9rem;font-weight:600;color:var(--text);margin-top:1rem;">
+        <span data-lang="pl" class="visible">Możesz napisać, jeśli:</span>
+        <span data-lang="en">You can write if:</span>
+      </p>
+      <ul class="contact-bullets">
+        <li><span data-lang="pl" class="visible">masz pomysł, ale nie wiesz, od czego zacząć,</span><span data-lang="en">you have an idea but don't know where to start,</span></li>
+        <li><span data-lang="pl" class="visible">potrzebujesz strony lub landing page'a,</span><span data-lang="en">you need a website or landing page,</span></li>
+        <li><span data-lang="pl" class="visible">chcesz zbudować MVP,</span><span data-lang="en">you want to build an MVP,</span></li>
+        <li><span data-lang="pl" class="visible">chcesz wdrożyć AI w konkretnym procesie,</span><span data-lang="en">you want to implement AI in a specific process,</span></li>
+        <li><span data-lang="pl" class="visible">potrzebujesz prostego narzędzia wewnętrznego,</span><span data-lang="en">you need a simple internal tool,</span></li>
+        <li><span data-lang="pl" class="visible">Twój zespół IT potrzebuje dodatkowego wsparcia,</span><span data-lang="en">your IT team needs additional support,</span></li>
+        <li><span data-lang="pl" class="visible">nie chcesz zatrudniać kolejnej osoby na etat, ale potrzebujesz dowieźć konkretny temat.</span><span data-lang="en">you don't want to hire full-time but need to deliver a specific project.</span></li>
+      </ul>
+      <p style="font-size:.85rem;color:var(--muted);margin-top:1rem;line-height:1.6;">
+        <span data-lang="pl" class="visible">Odpowiadam możliwie szybko i konkretnie. Jeżeli będę mogła pomóc, zaproponuję kolejny sensowny krok.</span>
+        <span data-lang="en">I reply as quickly and concretely as possible. If I can help, I'll suggest the next sensible step.</span>
       </p>
 
       <div class="contact-item">
@@ -1278,6 +1420,7 @@
           <option value="mvp"  data-pl="Produkt MVP"         data-en="MVP Product">Produkt MVP</option>
           <option value="sys"  data-pl="Prosty system"       data-en="Simple System">Prosty system</option>
           <option value="ai"   data-pl="Automatyzacja AI"    data-en="AI Automation">Automatyzacja AI</option>
+          <option value="delivery" data-pl="Wsparcie delivery dla firm IT" data-en="IT delivery support">Wsparcie delivery dla firm IT</option>
           <option value="retainer" data-pl="Stała współpraca (retainer)" data-en="Ongoing partnership (retainer)">Stała współpraca (retainer)</option>
           <option value="other" data-pl="Inne"               data-en="Other">Inne</option>
         </select>
@@ -1341,9 +1484,10 @@
     // update nav links text
     const navMap = {
       'services-link': { pl: 'Usługi',     en: 'Services'    },
+      'audience-link': { pl: 'Dla kogo',   en: 'For whom'    },
+      'cases-link':    { pl: 'Realizacje', en: 'Projects'    },
+      'faq-link':      { pl: 'FAQ',        en: 'FAQ'         },
       'about-link':    { pl: 'O mnie',     en: 'About'       },
-      'whyme-link':    { pl: 'Dlaczego ja?', en: 'Why me?'    },
-      'cases-link':    { pl: 'Realizacje', en: 'Case Studies'},
       'contact-link':  { pl: 'Kontakt',    en: 'Contact'     },
     };
     document.querySelectorAll('[data-nav]').forEach(el => {
@@ -1370,9 +1514,10 @@
     // sync mobile menu labels
     const mnavMap = {
       'services-link': { pl: 'Usługi',       en: 'Services'    },
-      'whyme-link':    { pl: 'Dlaczego ja?', en: 'Why me?'     },
+      'audience-link': { pl: 'Dla kogo',     en: 'For whom'    },
+      'cases-link':    { pl: 'Realizacje',   en: 'Projects'    },
+      'faq-link':      { pl: 'FAQ',          en: 'FAQ'         },
       'about-link':    { pl: 'O mnie',       en: 'About'       },
-      'cases-link':    { pl: 'Realizacje',   en: 'Case Studies'},
       'contact-link':  { pl: 'Kontakt',      en: 'Contact'     },
     };
     document.querySelectorAll('[data-mnav]').forEach(el => {
